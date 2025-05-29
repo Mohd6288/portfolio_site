@@ -98,7 +98,7 @@ export default function Home() {
           <p className="mt-2 text-gray-600">
             A mobile travel companion app designed in Figma with an emphasis on intuitive UX and clean UI. The prototype guides users through trip planning, booking, and local discovery.
             <br />
-            <a href="https://www.figma.com/file/your-figma-link" target="_blank" className="text-blue-600 underline">View Prototype on Figma</a>
+            <a href="https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" target="_blank" className="text-blue-600 underline">View Prototype on Figma</a>
           </p>
         </div>
 
