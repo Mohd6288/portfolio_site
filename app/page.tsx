@@ -39,7 +39,7 @@ export default function Home() {
           <div className="aspect-w-16 aspect-h-9 mt-4">
             <iframe
               className="w-full h-full rounded"
-              src="https://www.youtube.com/embed/RLE4yknweZk"
+              src="https://youtu.be/7O4HrpV3EY0"
               title="AI Body Tracking Demo"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
