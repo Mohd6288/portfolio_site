@@ -117,7 +117,7 @@ export default function Home() {
       {/* CV Download & Contact */}
       <section className="text-center">
         <a
-          href="/Mohammed_Alkhalifa_CV_2025.pdf"
+          href="\Mohammed-Alkhalifa-Resume.pdf"
           className="text-blue-600 underline font-medium"
           target="_blank"
           rel="noopener noreferrer"
