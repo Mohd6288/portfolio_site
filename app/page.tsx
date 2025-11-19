@@ -3,134 +3,49 @@ import { Mail, Github, Linkedin } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-900 p-8 space-y-16">
-      {/* Header */}
-      <section className="text-center">
-        <h1 className="text-4xl font-extrabold tracking-tight">Mohammed Alkhalifa</h1>
-        <p className="text-lg mt-2 text-gray-600">
-          Creative Technologist • Front-End Developer • AI & Physical Computing
-        </p>
-      </section>
-
-      {/* About Me */}
-      <section className="max-w-3xl mx-auto text-center">
-        <h2 className="text-2xl font-bold mb-4">About Me</h2>
-
-        {/* Creative Image Grid */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          <img src="/images/image_1.jpg" alt="Creative Work 1" className="rounded-xl shadow-md hover:scale-105 transition-transform duration-300" />
-          <img src="/images/image_2.jpg" alt="Creative Work 2" className="rounded-xl shadow-md hover:scale-105 transition-transform duration-300" />
-          <img src="/images/image_3.jpg" alt="Creative Work 3" className="rounded-xl shadow-md hover:scale-105 transition-transform duration-300" />
-          <img src="/images/image_4.jpg" alt="Creative Work 4" className="rounded-xl shadow-md hover:scale-105 transition-transform duration-300" />
-        </div>
-
-        <p className="text-gray-700">
-          I'm a passionate Creative Computing graduate from Goldsmiths, University of London. I specialize in blending technology and design to create immersive and meaningful digital experiences. With a strong background in front-end development, AI, and physical computing, I enjoy building interactive projects that educate, engage, and inspire.
-        </p>
-        <p className="text-gray-700 mt-4">
-          I'm particularly enthusiastic about educational technology, having led workshops for kids and developed data-driven applications. I'm always open to exciting collaborations and roles that bridge creativity with technology.
-        </p>
-      </section>
-
-      {/* Projects Section */}
-      <section className="max-w-5xl mx-auto grid gap-6 md:grid-cols-2">
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold">AI Body Tracking Installation</h2>
-          <div className="aspect-w-16 aspect-h-9 mt-4">
-            <iframe
-              className="w-full h-full rounded"
-              src="https://www.youtube.com/embed/7O4HrpV3EY0"
-              title="AI Body Tracking Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 text-gray-900">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-8 py-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-pink-600/5 pointer-events-none"></div>
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="inline-block mb-6 px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
+            Available for Opportunities
           </div>
-          <p className="mt-2 text-gray-600">
-            A real-time interactive art installation using MediaPipe and TouchDesigner to create immersive AI-driven experiences.
-            <br />
-            <a href="https://github.com/Mohd6288/CCP_Final_-NO_Name_yet-.git" target="_blank" className="text-blue-600 underline">View on GitHub</a>
+          <h1 className="text-6xl md:text-7xl font-bold tracking-tight mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Mohammed Alkhalifa
+          </h1>
+          <p className="text-2xl md:text-3xl text-gray-700 mb-8 font-light">
+            Creative Technologist & Front-End Developer
           </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold">Arduino Pomodoro Project</h2>
-          <div className="aspect-w-16 aspect-h-9 mt-4">
-            <iframe
-              className="w-full h-full rounded"
-              src="https://www.youtube.com/embed/VT0XQL8e6lo"
-              title="Arduino Pomodoro Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+            Specializing in AI-driven experiences, interactive installations, and immersive digital products that bridge creativity with cutting-edge technology.
+          </p>
+          <div className="flex justify-center gap-4 mb-12">
+            <a
+              href="#projects"
+              className="px-8 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-all hover:shadow-lg hover:scale-105"
+            >
+              View Projects
+            </a>
+            <a
+              href="\Mohammed-Alkhalifa-Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-white text-blue-600 rounded-full font-medium hover:bg-gray-50 transition-all border-2 border-blue-600 hover:shadow-lg hover:scale-105"
+            >
+              Download CV
+            </a>
           </div>
-          <p className="mt-2 text-gray-600">
-            A physical Pomodoro timer using Arduino and interactive LEDs, designed to support focused study sessions.
-            <br />
-            <a href="https://github.com/Mohd6288/pomodoro.git" target="_blank" className="text-blue-600 underline">View on GitHub</a>
-          </p>
-        </div>
-
-
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold">C++ DJ App</h2>
-          <div className="aspect-w-16 aspect-h-9 mt-4">
-            <iframe
-              className="w-full h-full rounded"
-              src="https://www.youtube.com/embed/fomGKOAOfXk"
-              title="DJ App Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="flex justify-center gap-6 text-gray-700">
+            <a href="mailto:M.alkhalifah@hotmail.com" aria-label="Email" className="hover:text-blue-600 transition-colors hover:scale-110 transform duration-200">
+              <Mail size={24} />
+            </a>
+            <a href="https://github.com/Mohd6288" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-blue-600 transition-colors hover:scale-110 transform duration-200">
+              <Github size={24} />
+            </a>
+            <a href="https://linkedin.com/in/mohammed-a-alkhalifa-68322b1bb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-blue-600 transition-colors hover:scale-110 transform duration-200">
+              <Linkedin size={24} />
+            </a>
           </div>
-          <p className="mt-2 text-gray-600">
-            A desktop DJ application developed in C++ with real-time mixing capabilities and custom UI controls.
-            <br />
-            <a href="https://github.com/Mohd6288/DJ_app.git" target="_blank" className="text-blue-600 underline">View on GitHub</a>
-          </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold">Travel App Prototype (Figma UX/UI)</h2>
-          <img src="/images/image_5.png" alt="Travel App Preview" className="w-full rounded mt-4" />
-          <p className="mt-2 text-gray-600">
-            A mobile travel companion app designed in Figma with an emphasis on intuitive UX and clean UI. The prototype guides users through trip planning, booking, and local discovery.
-            <br />
-            <a href="https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" target="_blank" className="text-blue-600 underline">View Prototype on Figma</a>
-          </p>
-        </div>
-
-        
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-xl font-semibold">Knowledge Sharing Forum (SQL Web App)</h2>
-          <img src="/images/image_6.png" alt="Knowledge Sharing App" className="w-full rounded mt-4" />
-          <p className="mt-2 text-gray-600">
-            A dynamic web application built with SQL and server-side scripting to help users share coding tips, ask questions, and grow a supportive learning community.
-            <br />
-            <a href="http://doc.gold.ac.uk/usr/700/" target="_blank" className="text-blue-600 underline">Visit Live Site</a>
-          </p>
         </div>
       </section>
-
-      {/* CV Download & Contact */}
-      <section className="text-center">
-        <a
-          href="\Mohammed-Alkhalifa-Resume.pdf"
-          className="text-blue-600 underline font-medium"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Download My CV
-        </a>
-
-        <div className="flex justify-center gap-6 mt-4 text-gray-700">
-          <a href="mailto:M.alkhalifah@hotmail.com" aria-label="Email" className="hover:text-blue-600"><Mail /></a>
-          <a href="https://github.com/Mohd6288" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-blue-600"><Github /></a>
-          <a href="https://linkedin.com/in/mohammed-a-alkhalifa-68322b1bb" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-blue-600"><Linkedin /></a>
-        </div>
-      </section>
-    </main>
-  );
-}
