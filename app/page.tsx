@@ -90,8 +90,7 @@ const PROJECTS = [
     tagColor: "indigo",
     type: "image" as const,
     imageUrl: "/images/image_5.png",
-    description:
-      "A mobile travel companion app designed in Figma with a focus on clean UI, simple flows, and quick access to key travel information.",
+    description:"A mobile travel companion app designed in Figma with a focus on clean UI, simple flows, and quick access to key travel information.",
     linkLabel: "View Prototype",
     linkUrl:
       "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1",
@@ -107,7 +106,7 @@ const PROJECTS = [
       "A dynamic web application built with SQL and server-side scripting to help users share coding tips, ask questions, and grow a supportive learning community.",
     linkLabel: "Visit Live Site",
     linkUrl: "http://doc.gold.ac.uk/usr/700/",
-    // wide: true, // makes it span 2 columns on desktop
+    wide: true, // makes it span 2 columns on desktop
   },
   {
     id: "ml-fever-notebook",
@@ -149,6 +148,7 @@ const PROJECTS = [
     "An interactive Stable Diffusion app that transforms webcam or uploaded photos into old-film, comic, cartoon, and anime styles in real time. Built with Python, Diffusers, and Gradio, it showcases prompt-based style control, adjustable strength, and a dark-mode UI for creative machine learning exploration.",
   linkLabel: "View on GitHub",
   linkUrl: "https://github.com/Mohd6288/real-time-style-diffusion-camera",
+  wide: true, // makes it span 2 columns on desktop
 }
 
 
