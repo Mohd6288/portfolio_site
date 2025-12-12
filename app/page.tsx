@@ -90,8 +90,7 @@ const PROJECTS = [
     tagColor: "indigo",
     type: "image" as const,
     imageUrl: "/images/image_5.png",
-    description:
-      "A mobile travel companion app designed in Figma with a focus on clean UI, simple flows, and quick access to key travel information.",
+    description:"A mobile travel companion app designed in Figma with a focus on clean UI, simple flows, and quick access to key travel information.",
     linkLabel: "View Prototype",
     linkUrl:
       "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1",
@@ -109,6 +108,50 @@ const PROJECTS = [
     linkUrl: "http://doc.gold.ac.uk/usr/700/",
     wide: true, // makes it span 2 columns on desktop
   },
+  {
+    id: "ml-fever-notebook",
+    title: "End-to-End Machine Learning: Fever Classification",
+    tag: "Machine Learning",
+    tagColor: "teal",
+    type: "image" as const, // you can keep this or change later
+    // Optional: if you make a thumbnail screenshot, put it here:
+    imageUrl: "/images/image_7.png",
+    description:
+      "An end-to-end machine learning notebook that builds and evaluates models on a medical-style dataset, comparing patients with and without fever. It walks through data preprocessing, feature engineering, training, and evaluation in a clear, educational way.",
+    linkLabel: "View Notebook",
+    linkUrl:
+      "https://drive.google.com/file/d/1BtOluXAlnDgXSrvaN2xdLFEugEELoS-6/view?usp=sharing",
+    // wide: true, // uncomment if you want it to span 2 columns on desktop
+  },
+  {
+  id: "ml-diffusion-jellyfish",
+  title: "Diffusion Models: Jellyfish Image Generation",
+  tag: "Machine Learning",
+  tagColor: "teal", // uses the teal style we already configured
+  type: "image" as const,
+  // Optional thumbnail (add once you have a screenshot in /public/images/)
+  imageUrl: "/images/image_8.png",
+  description:
+    "An end-to-end machine learning notebook that applies diffusion models to generate diverse jellyfish images. The notebook covers data preparation, model configuration, training, and qualitative evaluation of the generated samples.",
+  linkLabel: "View Notebook",
+  linkUrl: "https://colab.research.google.com/drive/1QrN0vTAFjN8g0K39j_B1DYpe_LRs3QUb?usp=sharing",
+},
+{
+  id: "realtime-style-diffusion",
+  title: "Real-Time Style Diffusion Camera",
+  tag: "Machine Learning",
+  tagColor: "teal", // uses the teal style we already configured
+  type: "image" as const,
+  // add a screenshot of the Gradio app UI to this path
+  imageUrl: "/images/image_9.png",
+  description:
+    "An interactive Stable Diffusion app that transforms webcam or uploaded photos into old-film, comic, cartoon, and anime styles in real time. Built with Python, Diffusers, and Gradio, it showcases prompt-based style control, adjustable strength, and a dark-mode UI for creative machine learning exploration.",
+  linkLabel: "View on GitHub",
+  linkUrl: "https://github.com/Mohd6288/real-time-style-diffusion-camera",
+  wide: true, // makes it span 2 columns on desktop
+}
+
+
 ];
 
 // Contact cards
