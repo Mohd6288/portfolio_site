@@ -1,5 +1,6 @@
-import React from "react";
-import { Mail, Github, Linkedin } from "lucide-react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { Mail, Github, Linkedin, Menu, X } from "lucide-react";
 
 /* =============================
    1. DATA CONFIG (EASY TO EDIT)
@@ -8,13 +9,16 @@ import { Mail, Github, Linkedin } from "lucide-react";
 // Hero text + links
 const HERO = {
   name: "Mohammed Alkhalifa",
-  title: "Creative Technologist & Front-End Developer",
+  title: "Junior Data Analyst",
+  subtitle: "Power BI • Excel • SQL • Python | Reporting & Dashboards",
   tagline:
-    "I design and build AI-driven experiences, interactive installations, and immersive digital products at the intersection of code, creativity, and human experience.",
+    "Building clear summaries, visuals, and stakeholder-ready reporting using Power BI, Excel, SQL, and Python. Supporting performance tracking and digital transformation aligned with Saudi Vision 2030.",
+  location: "Dammam, Saudi Arabia",
   email: "M.alkhalifah@hotmail.com",
+  phone: "+966540005871",
   github: "https://github.com/Mohd6288",
   linkedin: "https://linkedin.com/in/mohammed-a-alkhalifa-68322b1bb",
-  cvUrl: "/Mohammed-Alkhalifa-Resume.pdf",
+  cvUrl: "/Mohammed-Alkhalifa-Data-analyst.pdf",
 };
 
 // About section content
@@ -22,8 +26,8 @@ const ABOUT = {
   heading: "About Me",
   subtitle: "Background & Focus",
   paragraphs: [
-    "I'm a Creative Computing graduate from Goldsmiths, University of London, with a focus on building interactive systems that feel both technically solid and emotionally engaging. My work spans front-end development, AI-driven interfaces, and physical computing.",
-    "I enjoy designing experiences where learners and users can explore complex ideas through intuitive, playful interfaces. I've led workshops for kids, built tools for knowledge sharing, and developed data-driven, interactive installations.",
+    "I'm a Creative Computing graduate from Goldsmiths, University of London (2025) with First-Class Honours, specializing in data analytics, machine learning, and business intelligence. Currently working as a Data Analyst at Advanced Micro Technologies (AMT) in Alkhobar, Saudi Arabia, where I ensure data accuracy, develop insightful dashboards, and translate raw data into clear reports for strategic decision-making.",
+    "With a unique background as a Chemical Plant Operator at Sadara Chemical Company, I bring strong operational discipline, problem-solving skills, and attention to detail to data analytics. I'm passionate about supporting performance tracking and digital transformation aligned with Saudi Vision 2030, using tools like Power BI, Python, SQL, and Excel to drive data-driven decisions.",
   ],
 };
 
@@ -37,12 +41,15 @@ const ABOUT_IMAGES = [
 
 // Tech stack badges (you can add/remove easily)
 const TECH_STACK = [
-  "React",
-  "TypeScript / JavaScript",
-  "Tailwind CSS",
-  "Arduino & Physical Computing",
-  "TouchDesigner",
-  "C++ / Audio",
+  "Power BI & Tableau",
+  "Python & SQL",
+  "Excel & Data Analysis",
+  "Machine Learning (scikit-learn, TensorFlow, PyTorch)",
+  "Data Visualization (Matplotlib, Seaborn)",
+  "Git/GitHub",
+  "Jupyter Notebooks",
+  "ETL & Data Cleaning",
+  "Statistical Analysis",
 ];
 
 // Projects
@@ -55,7 +62,7 @@ const PROJECTS = [
     type: "video" as const,
     videoUrl: "https://www.youtube.com/embed/7O4HrpV3EY0",
     description:
-      "A real-time interactive art installation using MediaPipe and TouchDesigner. The system responds to body movement with generative visuals and sound, creating an immersive AI-driven environment.",
+      "Built a real-time interactive system that tracks body movement and triggers generative visuals and sound using MediaPipe and TouchDesigner. An immersive AI-driven installation showcasing creative applications of computer vision.",
     linkLabel: "View on GitHub",
     linkUrl: "https://github.com/Mohd6288/CCP_Final_-NO_Name_yet-.git",
   },
@@ -90,7 +97,7 @@ const PROJECTS = [
     tagColor: "indigo",
     type: "image" as const,
     imageUrl: "/images/image_5.png",
-    description:"A mobile travel companion app designed in Figma with a focus on clean UI, simple flows, and quick access to key travel information.",
+    description:"Designed a clickable mobile UI prototype with simple flows and clean visual hierarchy using Figma. Focus on intuitive navigation and user-centered design principles.",
     linkLabel: "View Prototype",
     linkUrl:
       "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1",
@@ -195,14 +202,22 @@ function SectionTitle({
 }) {
   return (
     <div className="text-center mb-14">
-      <h2 className="text-3xl md:text-4xl font-semibold mb-3 bg-gradient-to-r from-sky-400 to-purple-400 bg-clip-text text-transparent">
-        {title}
-      </h2>
       {subtitle && (
-        <p className="text-slate-400 text-sm uppercase tracking-[0.2em]">
+        <p className="text-sky-400 text-sm uppercase tracking-[0.2em] mb-3 font-semibold">
           {subtitle}
         </p>
       )}
+      <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-sky-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+        {title}
+      </h2>
+      {/* Decorative underline */}
+      <div className="flex items-center justify-center gap-2">
+        <div className="h-px w-12 bg-gradient-to-r from-transparent to-sky-500" />
+        <div className="h-1 w-1 rounded-full bg-sky-400" />
+        <div className="h-px w-20 bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500" />
+        <div className="h-1 w-1 rounded-full bg-purple-400" />
+        <div className="h-px w-12 bg-gradient-to-l from-transparent to-pink-500" />
+      </div>
     </div>
   );
 }
@@ -221,36 +236,98 @@ function TechBadge({ label }: { label: string }) {
    ============================= */
 
 function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: "#about", label: "About" },
+    { href: "#projects", label: "Projects" },
+    { href: "#contact", label: "Contact" },
+  ];
+
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
-    <header className="sticky top-0 z-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 border-b border-slate-800 backdrop-blur transition-all duration-300 ${
+        scrolled ? "bg-slate-950/95 shadow-lg shadow-slate-900/50" : "bg-slate-950/80"
+      }`}
+    >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <a
           href="#top"
-          className="font-semibold tracking-tight text-slate-100 hover:text-sky-400 transition-colors"
+          className="font-semibold tracking-tight text-slate-100 hover:text-sky-400 transition-colors text-lg"
         >
           {HERO.name}
         </a>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-          <a href="#projects" className="hover:text-sky-400 transition-colors">
-            Projects
-          </a>
-          <a href="#about" className="hover:text-sky-400 transition-colors">
-            About
-          </a>
-          <a href="#contact" className="hover:text-sky-400 transition-colors">
-            Contact
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-sky-400 transition-colors relative group"
+            >
+              {link.label}
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-400 to-purple-400 group-hover:w-full transition-all duration-300" />
+            </a>
+          ))}
           <a
             href={HERO.cvUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-1.5 rounded-full bg-sky-500 text-white hover:bg-sky-400 transition-colors shadow-sm shadow-sky-500/40"
+            className="px-4 py-1.5 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 text-white hover:from-sky-400 hover:to-blue-400 transition-all shadow-sm shadow-sky-500/40 hover:shadow-sky-500/60 hover:scale-105"
           >
-            CV
+            Download CV
           </a>
         </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden p-2 text-slate-300 hover:text-sky-400 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-slate-800 bg-slate-950/98 backdrop-blur">
+          <nav className="flex flex-col px-6 py-4 space-y-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={closeMenu}
+                className="text-slate-300 hover:text-sky-400 transition-colors py-2 text-base font-medium"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href={HERO.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="px-4 py-2 rounded-full bg-gradient-to-r from-sky-500 to-blue-500 text-white text-center hover:from-sky-400 hover:to-blue-400 transition-all shadow-sm shadow-sky-500/40 font-medium"
+            >
+              Download CV
+            </a>
+          </nav>
+        </div>
+      )}
+
       <div className="h-px w-full bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 opacity-60" />
     </header>
   );
@@ -261,34 +338,44 @@ function HeroSection() {
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="relative min-h-[80vh] flex items-center justify-center px-6 py-20"
+      className="relative min-h-[90vh] flex items-center justify-center px-6 py-20"
     >
-      {/* Background accents */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-purple-500/10 blur-3xl" />
+      {/* Enhanced Background accents */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-sky-500/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-purple-500/10 blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-pink-500/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-slate-900/80 border border-sky-500/40 text-sky-200 text-sm">
+        <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/40 text-blue-200 text-sm font-medium shadow-lg shadow-blue-500/10">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-400" />
           </span>
-          Available for opportunities
+          Currently at Advanced Micro Technologies
         </div>
 
-        <h1
-          id="hero-heading"
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 bg-gradient-to-r from-sky-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
-        >
-          {HERO.title}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-2 text-slate-100">
+          {HERO.name}
         </h1>
 
-        <p className="text-lg md:text-xl text-slate-300 mb-1">
-          {HERO.name}
+        <h2
+          id="hero-heading"
+          className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-r from-sky-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+        >
+          {HERO.title}
+        </h2>
+
+        <p className="text-base md:text-lg text-sky-300 mb-4 font-medium">
+          {HERO.subtitle}
         </p>
-        <p className="text-base md:text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+
+        <p className="text-sm md:text-base text-slate-400 mb-2 flex items-center justify-center gap-2">
+          <span>📍</span> {HERO.location}
+        </p>
+
+        <p className="text-base md:text-lg text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed">
           {HERO.tagline}
         </p>
 
@@ -346,6 +433,18 @@ function HeroSection() {
           ))}
         </div>
       </div>
+
+      {/* Scroll Indicator */}
+      <a
+        href="#about"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 hover:text-sky-400 transition-colors group"
+        aria-label="Scroll to about section"
+      >
+        <span className="text-xs uppercase tracking-wider">Scroll</span>
+        <div className="w-6 h-10 border-2 border-slate-600 rounded-full flex items-start justify-center p-1 group-hover:border-sky-400 transition-colors">
+          <div className="w-1 h-2 bg-slate-400 rounded-full animate-bounce group-hover:bg-sky-400" />
+        </div>
+      </a>
     </section>
   );
 }
@@ -361,10 +460,11 @@ function AboutSection() {
 
       {/* Image grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-        {ABOUT_IMAGES.map((item) => (
+        {ABOUT_IMAGES.map((item, index) => (
           <div
             key={item.label}
-            className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 shadow-md hover:shadow-xl hover:border-sky-500/70 transition-all duration-300"
+            className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/60 shadow-md hover:shadow-xl hover:shadow-sky-500/20 hover:border-sky-500/70 transition-all duration-300 hover:-translate-y-1"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
             <img
               src={item.src}
@@ -372,9 +472,9 @@ function AboutSection() {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="inline-flex rounded-full bg-slate-900/80 px-3 py-1 text-xs font-medium text-slate-100 border border-slate-700/80">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              <span className="inline-flex rounded-full bg-slate-900/90 px-3 py-1 text-xs font-medium text-slate-100 border border-sky-500/50 shadow-lg">
                 {item.label}
               </span>
             </div>
@@ -446,7 +546,7 @@ function ProjectsSection() {
             return (
               <article
                 key={project.id}
-                className={`group bg-slate-900/80 border border-slate-800 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden ${cardBorderHoverClass} ${
+                className={`group bg-slate-900/80 border border-slate-800 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden hover:-translate-y-1 ${cardBorderHoverClass} ${
                   project.wide ? "md:col-span-2" : ""
                 }`}
               >
@@ -591,11 +691,62 @@ export default function Home() {
       <ProjectsSection />
       <ContactSection />
 
-      <footer className="text-center py-10 px-6 border-t border-slate-800 text-xs text-slate-500">
-        <p>
-          © {new Date().getFullYear()} {HERO.name}. Built with React & Tailwind
-          CSS.
-        </p>
+      <footer className="border-t border-slate-800 bg-slate-950/50">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Left side - Name and copyright */}
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-semibold text-slate-100 mb-1">
+                {HERO.name}
+              </h3>
+              <p className="text-xs text-slate-500">
+                © {new Date().getFullYear()} All rights reserved. Built with Next.js & Tailwind CSS
+              </p>
+            </div>
+
+            {/* Right side - Social links */}
+            <div className="flex items-center gap-4">
+              <a
+                href={`mailto:${HERO.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-slate-900/60 border border-slate-800 text-slate-300 hover:text-sky-400 hover:border-sky-500/50 transition-all hover:scale-110"
+                aria-label="Email"
+              >
+                <Mail size={18} />
+              </a>
+              <a
+                href={HERO.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-slate-900/60 border border-slate-800 text-slate-300 hover:text-purple-400 hover:border-purple-500/50 transition-all hover:scale-110"
+                aria-label="GitHub"
+              >
+                <Github size={18} />
+              </a>
+              <a
+                href={HERO.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-full bg-slate-900/60 border border-slate-800 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 transition-all hover:scale-110"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </a>
+            </div>
+          </div>
+
+          {/* Back to top link */}
+          <div className="mt-8 text-center">
+            <a
+              href="#top"
+              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-sky-400 transition-colors group"
+            >
+              <span>Back to top</span>
+              <span className="group-hover:-translate-y-1 transition-transform">↑</span>
+            </a>
+          </div>
+        </div>
       </footer>
     </main>
   );
