@@ -77,7 +77,8 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/platform-adventure.svg",
     desc: "Multi-level 2D platformer built with p5.js — 5 levels, dash & wall-jump mechanics, weather system, combo scoring, enemy AI, leaderboard, and mobile support.",
-    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/gameProject" },
+    link: { label: "Play Live", url: "https://game-project-sooty-phi.vercel.app" },
+    link2: { label: "GitHub", url: "https://github.com/Mohd6288/gameProject" },
   },
   {
     id: "ai-body-tracking",
@@ -802,13 +803,23 @@ function Projects() {
                     {p.desc}
                   </p>
 
-                  {/* link — always at bottom */}
-                  <a
-                    href={p.link.url} target="_blank" rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 mt-4 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS[p.color] ?? LINK_CLS.sky}`}
-                  >
-                    {p.link.label} <ExternalLink size={11} />
-                  </a>
+                  {/* links — always at bottom */}
+                  <div className="flex items-center gap-4 mt-4">
+                    <a
+                      href={p.link.url} target="_blank" rel="noopener noreferrer"
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS[p.color] ?? LINK_CLS.sky}`}
+                    >
+                      {p.link.label} <ExternalLink size={11} />
+                    </a>
+                    {"link2" in p && (p as any).link2 && (
+                      <a
+                        href={(p as any).link2.url} target="_blank" rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS[p.color] ?? LINK_CLS.sky}`}
+                      >
+                        {(p as any).link2.label} <ExternalLink size={11} />
+                      </a>
+                    )}
+                  </div>
                 </div>
 
               </article>
