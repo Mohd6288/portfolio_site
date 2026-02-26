@@ -10,7 +10,8 @@
       "Bash(npx vercel:*)",
       "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
       "Bash(npm --version:*)",
-      "Bash(cmd.exe /c:*)"
+      "Bash(cmd.exe /c:*)",
+      "WebFetch(domain:registry.npmjs.org)"
     ],
     "deny": [],
     "ask": []

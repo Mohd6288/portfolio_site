@@ -28,7 +28,7 @@ const HERO = {
 const STATS = [
   { num: 1,    suffix: "st", label: "Class Honours",    sub: "Goldsmiths, London" },
   { num: 2,    suffix: "+",  label: "Years Experience", sub: "Data Analytics"     },
-  { num: 8,    suffix: "+",  label: "Projects",         sub: "Multiple Domains"   },
+  { num: 10,   suffix: "+",  label: "Projects",         sub: "Multiple Domains"   },
   { num: 2030, suffix: "",   label: "Vision Aligned",   sub: "Saudi Arabia"       },
 ];
 
@@ -55,11 +55,33 @@ const TECH_STACK = [
   "TensorFlow", "PyTorch", "Matplotlib", "Seaborn",
 ];
 
-/* All projects — same card size, NO wide flag */
+/* All projects — same card size, NO wide flag — ordered by impact */
 const PROJECTS = [
   {
-    id: "ai-body-tracking",
+    id: "document-control",
     num: "01",
+    title: "AMT Document Control System",
+    tag: "Full Stack",
+    color: "emerald",
+    type: "image" as const,
+    media: "/images/AMT Logo Trans.png",
+    desc: "Automated document management system — processes emails via IMAP, classifies documents by type and discipline, generates sequential transmittal numbers, and logs correspondence in Excel.",
+    link: { label: "Visit Live Site", url: "https://amt-doccon.up.railway.app/login" },
+  },
+  {
+    id: "platform-adventure",
+    num: "02",
+    title: "Platform Adventure Game",
+    tag: "Game Dev",
+    color: "amber",
+    type: "image" as const,
+    media: "/images/platform-adventure.svg",
+    desc: "Multi-level 2D platformer built with p5.js — 5 levels, dash & wall-jump mechanics, weather system, combo scoring, enemy AI, leaderboard, and mobile support.",
+    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/gameProject" },
+  },
+  {
+    id: "ai-body-tracking",
+    num: "03",
     title: "AI Body Tracking Installation",
     tag: "AI & ML",
     color: "sky",
@@ -69,19 +91,19 @@ const PROJECTS = [
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/CCP_Final_-NO_Name_yet-.git" },
   },
   {
-    id: "arduino-pomodoro",
-    num: "02",
-    title: "Arduino Pomodoro Timer",
-    tag: "IoT",
-    color: "purple",
-    type: "video" as const,
-    media: "https://www.youtube.com/embed/VT0XQL8e6lo",
-    desc: "Hardware Pomodoro timer built with Arduino and LEDs — tactile feedback for focused, distraction-free work sessions.",
-    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/pomodoro.git" },
+    id: "style-diffusion",
+    num: "04",
+    title: "Real-Time Style Diffusion Camera",
+    tag: "Machine Learning",
+    color: "teal",
+    type: "image" as const,
+    media: "/images/image_9.png",
+    desc: "Stable Diffusion Gradio app — transforms webcam photos into old-film, comic, cartoon, and anime styles in real time.",
+    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
   {
     id: "dj-app",
-    num: "03",
+    num: "05",
     title: "C++ DJ Application",
     tag: "Audio",
     color: "pink",
@@ -89,28 +111,6 @@ const PROJECTS = [
     media: "https://www.youtube.com/embed/fomGKOAOfXk",
     desc: "Desktop DJ app in C++ with real-time mixing, BPM sync, custom waveform UI, and live performance controls.",
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/DJ_app.git" },
-  },
-  {
-    id: "travel-app",
-    num: "04",
-    title: "Travel App Prototype",
-    tag: "UX / UI",
-    color: "indigo",
-    type: "image" as const,
-    media: "/images/image_5.png",
-    desc: "Clickable Figma prototype for a travel app — intuitive flows, clean visual hierarchy, and user-centred design.",
-    link: { label: "View in Figma", url: "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" },
-  },
-  {
-    id: "knowledge-sharing",
-    num: "05",
-    title: "Knowledge Sharing Forum",
-    tag: "Full Stack",
-    color: "emerald",
-    type: "image" as const,
-    media: "/images/image_6.png",
-    desc: "Full-stack Q&A forum built with SQL and server-side scripting — share coding tips and grow a learning community.",
-    link: { label: "Visit Live Site", url: "http://doc.gold.ac.uk/usr/700/" },
   },
   {
     id: "ml-fever",
@@ -135,26 +135,37 @@ const PROJECTS = [
     link: { label: "View Notebook", url: "https://colab.research.google.com/drive/1QrN0vTAFjN8g0K39j_B1DYpe_LRs3QUb?usp=sharing" },
   },
   {
-    id: "style-diffusion",
+    id: "knowledge-sharing",
     num: "08",
-    title: "Real-Time Style Diffusion Camera",
-    tag: "Machine Learning",
-    color: "teal",
-    type: "image" as const,
-    media: "/images/image_9.png",
-    desc: "Stable Diffusion Gradio app — transforms webcam photos into old-film, comic, cartoon, and anime styles in real time.",
-    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
-  },
-  {
-    id: "document-control",
-    num: "09",
-    title: "AMT Document Control System",
+    title: "Knowledge Sharing Forum",
     tag: "Full Stack",
     color: "emerald",
     type: "image" as const,
-    media: "/images/AMT Logo Trans.png",
-    desc: "Automated document management system — processes emails via IMAP, classifies documents by type and discipline, generates sequential transmittal numbers, and logs correspondence in Excel.",
-    link: { label: "Visit Live Site", url: "https://amt-doccon.up.railway.app/login" },
+    media: "/images/image_6.png",
+    desc: "Full-stack Q&A forum built with SQL and server-side scripting — share coding tips and grow a learning community.",
+    link: { label: "Visit Live Site", url: "http://doc.gold.ac.uk/usr/700/" },
+  },
+  {
+    id: "arduino-pomodoro",
+    num: "09",
+    title: "Arduino Pomodoro Timer",
+    tag: "IoT",
+    color: "purple",
+    type: "video" as const,
+    media: "https://www.youtube.com/embed/VT0XQL8e6lo",
+    desc: "Hardware Pomodoro timer built with Arduino and LEDs — tactile feedback for focused, distraction-free work sessions.",
+    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/pomodoro.git" },
+  },
+  {
+    id: "travel-app",
+    num: "10",
+    title: "Travel App Prototype",
+    tag: "UX / UI",
+    color: "indigo",
+    type: "image" as const,
+    media: "/images/image_5.png",
+    desc: "Clickable Figma prototype for a travel app — intuitive flows, clean visual hierarchy, and user-centred design.",
+    link: { label: "View in Figma", url: "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" },
   },
 ];
 
@@ -169,7 +180,7 @@ const CONTACT = [
 const FILTERS = [
   { label: "All",          match: []                                    },
   { label: "ML & AI",      match: ["AI & ML", "Machine Learning"]       },
-  { label: "Engineering",  match: ["IoT", "Audio"]                      },
+  { label: "Engineering",  match: ["IoT", "Audio", "Game Dev"]          },
   { label: "Design & Web", match: ["UX / UI", "Full Stack"]             },
 ];
 
@@ -181,6 +192,7 @@ const TAG_CLS: Record<string, string> = {
   indigo:  "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
   emerald: "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
   teal:    "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  amber:   "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
 };
 const BORDER_CLS: Record<string, string> = {
   sky:     "hover:border-[var(--accent)]",
@@ -189,6 +201,7 @@ const BORDER_CLS: Record<string, string> = {
   indigo:  "hover:border-[var(--accent)]",
   emerald: "hover:border-[var(--accent)]",
   teal:    "hover:border-[var(--accent)]",
+  amber:   "hover:border-[var(--accent)]",
 };
 const LINK_CLS: Record<string, string> = {
   sky:     "text-[var(--link)] hover:text-[var(--link-hover)]",
@@ -197,6 +210,7 @@ const LINK_CLS: Record<string, string> = {
   indigo:  "text-[var(--link)] hover:text-[var(--link-hover)]",
   emerald: "text-[var(--link)] hover:text-[var(--link-hover)]",
   teal:    "text-[var(--link)] hover:text-[var(--link-hover)]",
+  amber:   "text-[var(--link)] hover:text-[var(--link-hover)]",
 };
 const ICON_CLS: Record<string, string> = {
   sky:     "text-[var(--accent-muted)]",
@@ -204,6 +218,7 @@ const ICON_CLS: Record<string, string> = {
   pink:    "text-[var(--accent-muted)]",
   purple:  "text-[var(--accent-muted)]",
   indigo:  "text-[var(--accent-muted)]",
+  amber:   "text-[var(--accent-muted)]",
 };
 const ICON_BG: Record<string, string> = {
   sky:     "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
@@ -211,6 +226,7 @@ const ICON_BG: Record<string, string> = {
   pink:    "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
   purple:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
   indigo:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
+  amber:   "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
 };
 
 /* ═══════════════════════════════════════
