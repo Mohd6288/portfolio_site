@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Mail, Github, Linkedin,
-  Menu, X, Sun, Moon,
+  Mail, Github, Linkedin, Phone, MessageCircle,
+  Menu, X, Moon, Monitor,
   ExternalLink, ArrowRight, MapPin,
 } from "lucide-react";
 
@@ -21,6 +21,7 @@ const HERO = {
   email: "M.alkhalifah@hotmail.com",
   github: "https://github.com/Mohd6288",
   linkedin: "https://www.linkedin.com/in/mohammed-alkhalifa-68322b1bb/",
+  phone: "+966540005871",
   cvUrl: "/Mohammed-Alkhalifa-Data-analyst.pdf",
 };
 
@@ -144,12 +145,25 @@ const PROJECTS = [
     desc: "Stable Diffusion Gradio app — transforms webcam photos into old-film, comic, cartoon, and anime styles in real time.",
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
+  {
+    id: "document-control",
+    num: "09",
+    title: "AMT Document Control System",
+    tag: "Full Stack",
+    color: "emerald",
+    type: "image" as const,
+    media: "/images/AMT Logo Trans.png",
+    desc: "Automated document management system — processes emails via IMAP, classifies documents by type and discipline, generates sequential transmittal numbers, and logs correspondence in Excel.",
+    link: { label: "Visit Live Site", url: "https://amt-doccon.up.railway.app/login" },
+  },
 ];
 
 const CONTACT = [
-  { id: "email",    icon: Mail,     label: "Email",    value: HERO.email,   href: `mailto:${HERO.email}`, color: "sky"    },
-  { id: "github",   icon: Github,   label: "GitHub",   value: "@Mohd6288",  href: HERO.github,            color: "purple" },
-  { id: "linkedin", icon: Linkedin, label: "LinkedIn", value: "Connect",    href: HERO.linkedin,          color: "indigo" },
+  { id: "email",    icon: Mail,           label: "Email",    value: HERO.email,  href: `mailto:${HERO.email}`,                        color: "sky",     desc: "Send me an email"  },
+  { id: "whatsapp", icon: MessageCircle,  label: "WhatsApp", value: HERO.phone,  href: `https://wa.me/${HERO.phone.replace("+","")}`, color: "emerald", desc: "Chat on WhatsApp"  },
+  { id: "phone",    icon: Phone,          label: "Phone",    value: HERO.phone,  href: `tel:${HERO.phone}`,                           color: "pink",    desc: "Call me directly"  },
+  { id: "github",   icon: Github,         label: "GitHub",   value: "@Mohd6288", href: HERO.github,                                   color: "purple",  desc: "View my repos"     },
+  { id: "linkedin", icon: Linkedin,       label: "LinkedIn", value: "Connect",   href: HERO.linkedin,                                 color: "indigo",  desc: "Let's connect"     },
 ];
 
 const FILTERS = [
@@ -159,40 +173,44 @@ const FILTERS = [
   { label: "Design & Web", match: ["UX / UI", "Full Stack"]             },
 ];
 
-/* colour maps */
+/* colour maps — unified retro style, both modes use CSS variables */
 const TAG_CLS: Record<string, string> = {
-  sky:     "bg-sky-50     dark:bg-sky-500/15     text-sky-600     dark:text-sky-300     border-sky-200     dark:border-sky-500/40",
-  purple:  "bg-purple-50  dark:bg-purple-500/15  text-purple-600  dark:text-purple-300  border-purple-200  dark:border-purple-500/40",
-  pink:    "bg-pink-50    dark:bg-pink-500/15    text-pink-600    dark:text-pink-300    border-pink-200    dark:border-pink-500/40",
-  indigo:  "bg-indigo-50  dark:bg-indigo-500/15  text-indigo-600  dark:text-indigo-300  border-indigo-200  dark:border-indigo-500/40",
-  emerald: "bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-300 border-emerald-200 dark:border-emerald-500/40",
-  teal:    "bg-teal-50    dark:bg-teal-500/15    text-teal-600    dark:text-teal-300    border-teal-200    dark:border-teal-500/40",
+  sky:     "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  purple:  "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  pink:    "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  indigo:  "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  emerald: "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
+  teal:    "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
 };
 const BORDER_CLS: Record<string, string> = {
-  sky:     "hover:border-sky-400/60     dark:hover:border-sky-500/60",
-  purple:  "hover:border-purple-400/60  dark:hover:border-purple-500/60",
-  pink:    "hover:border-pink-400/60    dark:hover:border-pink-500/60",
-  indigo:  "hover:border-indigo-400/60  dark:hover:border-indigo-500/60",
-  emerald: "hover:border-emerald-400/60 dark:hover:border-emerald-500/60",
-  teal:    "hover:border-teal-400/60    dark:hover:border-teal-500/60",
+  sky:     "hover:border-[var(--accent)]",
+  purple:  "hover:border-[var(--accent)]",
+  pink:    "hover:border-[var(--accent)]",
+  indigo:  "hover:border-[var(--accent)]",
+  emerald: "hover:border-[var(--accent)]",
+  teal:    "hover:border-[var(--accent)]",
 };
 const LINK_CLS: Record<string, string> = {
-  sky:     "text-sky-500     dark:text-sky-400     hover:text-sky-700     dark:hover:text-sky-200",
-  purple:  "text-purple-500  dark:text-purple-400  hover:text-purple-700  dark:hover:text-purple-200",
-  pink:    "text-pink-500    dark:text-pink-400    hover:text-pink-700    dark:hover:text-pink-200",
-  indigo:  "text-indigo-500  dark:text-indigo-400  hover:text-indigo-700  dark:hover:text-indigo-200",
-  emerald: "text-emerald-500 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-200",
-  teal:    "text-teal-500    dark:text-teal-400    hover:text-teal-700    dark:hover:text-teal-200",
+  sky:     "text-[var(--link)] hover:text-[var(--link-hover)]",
+  purple:  "text-[var(--link)] hover:text-[var(--link-hover)]",
+  pink:    "text-[var(--link)] hover:text-[var(--link-hover)]",
+  indigo:  "text-[var(--link)] hover:text-[var(--link-hover)]",
+  emerald: "text-[var(--link)] hover:text-[var(--link-hover)]",
+  teal:    "text-[var(--link)] hover:text-[var(--link-hover)]",
 };
 const ICON_CLS: Record<string, string> = {
-  sky:    "text-sky-500    dark:text-sky-400",
-  purple: "text-purple-500 dark:text-purple-400",
-  indigo: "text-indigo-500 dark:text-indigo-400",
+  sky:     "text-[var(--accent-muted)]",
+  emerald: "text-[var(--accent-muted)]",
+  pink:    "text-[var(--accent-muted)]",
+  purple:  "text-[var(--accent-muted)]",
+  indigo:  "text-[var(--accent-muted)]",
 };
 const ICON_BG: Record<string, string> = {
-  sky:    "bg-sky-50    dark:bg-sky-500/15    group-hover:bg-sky-100    dark:group-hover:bg-sky-500/25",
-  purple: "bg-purple-50 dark:bg-purple-500/15 group-hover:bg-purple-100 dark:group-hover:bg-purple-500/25",
-  indigo: "bg-indigo-50 dark:bg-indigo-500/15 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/25",
+  sky:     "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
+  emerald: "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
+  pink:    "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
+  purple:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
+  indigo:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
 };
 
 /* ═══════════════════════════════════════
@@ -200,7 +218,7 @@ const ICON_BG: Record<string, string> = {
 ═══════════════════════════════════════ */
 
 function useTheme() {
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(false);
   useEffect(() => {
     const s = localStorage.getItem("theme");
     const sys = matchMedia("(prefers-color-scheme: dark)").matches;
@@ -298,7 +316,7 @@ function Typewriter({ texts, speed = 80, pause = 2200 }: { texts: string[]; spee
   return (
     <span>
       {texts[ti].slice(0, ci)}
-      <span className="inline-block w-[3px] h-[0.82em] bg-sky-400 ml-1 align-middle rounded-sm animate-pulse" />
+      <span className="inline-block w-[3px] h-[0.82em] bg-[var(--accent)] ml-1 align-middle rounded-sm animate-pulse" />
     </span>
   );
 }
@@ -338,27 +356,31 @@ function ScrollBar() {
   }, []);
   return (
     <div
-      className="fixed top-0 left-0 z-[9999] h-[2.5px] bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 pointer-events-none"
+      className="fixed top-0 left-0 z-[9999] h-[2.5px] bg-[var(--accent)] pointer-events-none"
       style={{ width: `${w}%`, transition: "width 80ms linear" }}
     />
   );
 }
 
+const SECTION_NUMS: Record<string, number> = { "About Me": 1, "Featured Projects": 2, "Get In Touch": 3 };
 function SectionLabel({ title, sub }: { title: string; sub?: string }) {
+  const num = SECTION_NUMS[title] ?? 0;
   return (
     <Reveal className="text-center mb-16">
       {sub && (
-        <p className="text-xs uppercase tracking-[0.25em] font-semibold text-sky-500 dark:text-sky-400 mb-3">{sub}</p>
+        <p className="text-xs uppercase tracking-[0.25em] font-semibold text-[var(--accent-muted)] mb-3">
+          <span className="retro-section-num">§{num} — </span>{sub}
+        </p>
       )}
-      <h2 className="text-3xl md:text-4xl font-extrabold mb-5 bg-gradient-to-r from-sky-500 via-blue-500 to-purple-600 dark:from-sky-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+      <h2 className="glitch-sub text-3xl md:text-4xl font-extrabold mb-5 text-[var(--accent)]">
         {title}
       </h2>
       <div className="flex items-center justify-center gap-2">
-        <div className="h-px w-10 bg-gradient-to-r from-transparent to-sky-500" />
-        <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-        <div className="h-px w-20 bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500" />
-        <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-        <div className="h-px w-10 bg-gradient-to-l from-transparent to-pink-500" />
+        <div className="h-px w-10 bg-gradient-to-r from-transparent to-[var(--border)]" />
+        <div className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full" />
+        <div className="h-px w-20 bg-[var(--accent)]" />
+        <div className="w-1.5 h-1.5 bg-[var(--accent)] rounded-full" />
+        <div className="h-px w-10 bg-gradient-to-l from-transparent to-[var(--border)]" />
       </div>
     </Reveal>
   );
@@ -387,8 +409,8 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
   const base = "transition-all duration-300 backdrop-blur-md border-b";
   const cls  = scrolled
-    ? `${base} bg-white/95 dark:bg-[#020617]/95 border-slate-200 dark:border-slate-800 shadow-sm shadow-slate-100/80 dark:shadow-slate-900/80`
-    : `${base} bg-white/75 dark:bg-[#020617]/75 border-transparent`;
+    ? `${base} bg-[var(--bg)]/95 border-[var(--border)] shadow-sm`
+    : `${base} bg-[var(--bg)]/75 border-transparent`;
 
   return (
     <header className={`sticky top-0 z-50 ${cls}`}>
@@ -396,10 +418,10 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
         {/* Logo */}
         <a href="#top" className="group flex items-center gap-2.5">
-          <span className="w-8 h-8 rounded-xl bg-gradient-to-br from-sky-500 to-purple-600 flex items-center justify-center text-white text-[11px] font-black tracking-tight shadow-sm shadow-sky-500/40 group-hover:scale-110 transition-transform">
+          <span className="w-8 h-8 rounded-xl bg-[var(--accent)] flex items-center justify-center text-[var(--bg)] text-[11px] font-black tracking-tight shadow-sm group-hover:scale-110 transition-transform">
             MA
           </span>
-          <span className="hidden sm:block text-sm font-semibold text-slate-800 dark:text-slate-100 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">
+          <span className="hidden sm:block text-sm font-semibold text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors">
             Mohammed Alkhalifa
           </span>
         </a>
@@ -411,30 +433,30 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
               key={id} href={href}
               className={`relative px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 active === id
-                  ? "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100/80 dark:hover:bg-slate-800/50"
+                  ? "text-[var(--accent)] bg-[var(--tag-bg)]"
+                  : "text-[var(--accent-muted)] hover:text-[var(--fg)] hover:bg-[var(--tag-bg)]"
               }`}
             >
               {label}
               {active === id && (
-                <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-sky-400" />
+                <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[var(--accent)]" />
               )}
             </a>
           ))}
 
-          <span className="w-px h-5 bg-slate-200 dark:bg-slate-700 mx-2" />
+          <span className="w-px h-5 bg-[var(--border)] mx-2" />
 
           <button
             onClick={toggle}
             aria-label="Toggle theme"
-            className="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 text-slate-500 dark:text-slate-400 hover:border-sky-400 hover:text-sky-500 transition-all hover:scale-105"
+            className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)] hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-all hover:scale-105"
           >
-            {dark ? <Sun size={14} /> : <Moon size={14} />}
+            {dark ? <Monitor size={14} /> : <Moon size={14} />}
           </button>
 
           <a
             href={HERO.cvUrl} target="_blank" rel="noopener noreferrer"
-            className="ml-1 px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r from-sky-500 to-blue-600 text-white shadow-sm shadow-sky-500/30 hover:shadow-sky-500/50 hover:scale-[1.03] transition-all"
+            className="ml-1 px-4 py-2 rounded-lg text-sm font-semibold bg-[var(--accent)] text-[var(--bg)] shadow-sm hover:scale-[1.03] transition-all"
           >
             Download CV
           </a>
@@ -443,12 +465,12 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-2">
           <button onClick={toggle} aria-label="Toggle theme"
-            className="p-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/60 text-slate-500 dark:text-slate-400"
+            className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)]"
           >
-            {dark ? <Sun size={14} /> : <Moon size={14} />}
+            {dark ? <Monitor size={14} /> : <Moon size={14} />}
           </button>
           <button onClick={() => setOpen((o) => !o)} aria-label="Toggle menu"
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors"
+            className="p-2 rounded-lg text-[var(--fg)] hover:bg-[var(--tag-bg)] transition-colors"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -457,22 +479,22 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-slate-100 dark:border-slate-800 bg-white/98 dark:bg-[#020617]/98">
+        <div className="md:hidden border-t border-[var(--border)] bg-[var(--bg)]/98">
           <nav className="flex flex-col px-5 py-4 gap-1">
             {NAV.map(({ id, href, label }) => (
               <a key={id} href={href} onClick={() => setOpen(false)}
                 className={`px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                  active === id ? "text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-500/10" : "text-slate-600 dark:text-slate-300"
+                  active === id ? "text-[var(--accent)] bg-[var(--tag-bg)]" : "text-[var(--accent-muted)]"
                 }`}
               >{label}</a>
             ))}
             <a href={HERO.cvUrl} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}
-              className="mt-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-600 text-white text-sm font-semibold text-center"
+              className="mt-2 px-4 py-2.5 rounded-lg bg-[var(--accent)] text-[var(--bg)] text-sm font-semibold text-center"
             >Download CV</a>
           </nav>
         </div>
       )}
-      <div className="h-px bg-gradient-to-r from-sky-500 via-purple-500 to-pink-500 opacity-40" />
+      <div className="h-px bg-[var(--accent)] opacity-40" />
     </header>
   );
 }
@@ -496,17 +518,13 @@ function Hero() {
 
       {/* ── decorative bg ── */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-52 -left-52 w-[620px] h-[620px] rounded-full bg-sky-400/6 dark:bg-sky-500/10 blur-3xl animate-float-a" />
-        <div className="absolute -bottom-28 -right-28 w-[560px] h-[560px] rounded-full bg-purple-500/6 dark:bg-purple-500/10 blur-3xl animate-float-b" />
-        <div className="absolute top-1/2 right-1/3  w-[360px] h-[360px] rounded-full bg-pink-500/4 dark:bg-pink-500/7 blur-3xl animate-float-c" />
-
         {/* dot grid */}
-        <div className="absolute inset-0 opacity-[0.022] dark:opacity-[0.04]"
-          style={{ backgroundImage: "radial-gradient(circle,#64748b 1.2px,transparent 1.2px)", backgroundSize: "28px 28px" }} />
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(circle, var(--accent) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
 
         {/* rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-sky-500/5 dark:border-sky-500/8 animate-rotate" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-purple-500/4 dark:border-purple-500/6"
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-[var(--accent)]/10 animate-rotate" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full border border-[var(--accent)]/5"
           style={{ animation: "rotateSlow 30s linear reverse infinite" }} />
       </div>
 
@@ -515,10 +533,10 @@ function Hero() {
 
         {/* badge */}
         <div style={f(0)} className="flex justify-center mb-7">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/25 text-emerald-700 dark:text-emerald-300 text-[11px] font-semibold tracking-wide">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--tag-bg)] border border-[var(--border)] text-[var(--accent)] text-[11px] font-semibold tracking-wide">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inset-0 rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative w-2 h-2 rounded-full bg-emerald-400" />
+              <span className="animate-ping absolute inset-0 rounded-full bg-[var(--accent)] opacity-75" />
+              <span className="relative w-2 h-2 rounded-full bg-[var(--accent)]" />
             </span>
             Open to opportunities · {HERO.workplace}
           </span>
@@ -526,29 +544,29 @@ function Hero() {
 
         {/* greeting + name */}
         <div style={f(100)}>
-          <p className="text-xs uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400 font-semibold mb-3">Hello, I&apos;m</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 dark:text-white mb-4 leading-[1.02]">
+          <p className="text-xs uppercase tracking-[0.28em] text-[var(--accent-muted)] font-semibold mb-3">Hello, I&apos;m</p>
+          <h1 className="glitch-text text-5xl md:text-7xl font-black tracking-tight text-[var(--fg)] mb-4 leading-[1.02]" data-text={HERO.name}>
             {HERO.name}
           </h1>
         </div>
 
         {/* typewriter roles */}
         <div style={f(260)}>
-          <h2 className="text-xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-sky-500 via-blue-500 to-purple-500 dark:from-sky-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-grad min-h-[2.5rem]">
+          <h2 className="text-xl md:text-3xl font-bold mb-6 text-[var(--accent)] min-h-[2.5rem]">
             <Typewriter texts={HERO.roles} speed={80} pause={2200} />
           </h2>
         </div>
 
         {/* location */}
         <div style={f(400)}>
-          <p className="inline-flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mb-5">
+          <p className="inline-flex items-center gap-1.5 text-xs text-[var(--accent-muted)] mb-5">
             <MapPin size={12} /> {HERO.location}
           </p>
         </div>
 
         {/* tagline */}
         <div style={f(500)}>
-          <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed mb-10">
+          <p className="text-sm md:text-base text-[var(--accent-muted)] max-w-xl mx-auto leading-relaxed mb-10">
             {HERO.tagline}
           </p>
         </div>
@@ -557,13 +575,13 @@ function Hero() {
         <div style={f(620)}>
           <div className="flex flex-wrap justify-center gap-3 mb-10">
             <a href="#projects"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white text-sm font-bold shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 hover:scale-[1.04] transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all"
             >View Projects <ArrowRight size={15} /></a>
             <a href="#contact"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 text-sm font-bold hover:border-sky-400 hover:text-sky-600 dark:hover:text-sky-300 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm font-bold hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
             >Get in Touch</a>
             <a href={HERO.cvUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/40 text-slate-600 dark:text-slate-300 text-sm font-bold hover:border-slate-400 transition-all"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm font-bold hover:border-[var(--accent)] transition-all"
             ><ExternalLink size={13} /> Download CV</a>
           </div>
         </div>
@@ -572,12 +590,12 @@ function Hero() {
         <div style={f(740)}>
           <div className="flex justify-center gap-3 mb-12">
             {[
-              { h: `mailto:${HERO.email}`, I: Mail,     l: "Email",    c: "hover:text-sky-500 hover:border-sky-400"       },
-              { h: HERO.github,            I: Github,   l: "GitHub",   c: "hover:text-purple-500 hover:border-purple-400" },
-              { h: HERO.linkedin,          I: Linkedin, l: "LinkedIn", c: "hover:text-blue-500 hover:border-blue-400"     },
-            ].map(({ h, I, l, c }) => (
+              { h: `mailto:${HERO.email}`, I: Mail,     l: "Email"    },
+              { h: HERO.github,            I: Github,   l: "GitHub"   },
+              { h: HERO.linkedin,          I: Linkedin, l: "LinkedIn" },
+            ].map(({ h, I, l }) => (
               <a key={l} href={h} target={l === "Email" ? "_self" : "_blank"} rel={l === "Email" ? undefined : "noopener noreferrer"} aria-label={l}
-                className={`p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 text-slate-500 dark:text-slate-400 ${c} transition-all hover:scale-110`}
+                className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all hover:scale-110"
               ><I size={17} /></a>
             ))}
           </div>
@@ -585,13 +603,13 @@ function Hero() {
 
         {/* tech stack marquee */}
         <div style={f(860)}>
-          <p className="text-[9px] uppercase tracking-[0.3em] text-slate-400 font-semibold mb-3">Tech Stack</p>
+          <p className="text-[9px] uppercase tracking-[0.3em] text-[var(--accent-muted)] font-semibold mb-3">Tech Stack</p>
           <div className="relative overflow-hidden max-w-2xl mx-auto">
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50 dark:from-[#020617] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50 dark:from-[#020617] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--bg)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--bg)] to-transparent z-10 pointer-events-none" />
             <div className="flex gap-2.5 animate-ticker w-max">
               {[...TECH_STACK, ...TECH_STACK].map((t, i) => (
-                <span key={i} className="inline-flex items-center px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/70 text-slate-600 dark:text-slate-300 text-[11px] whitespace-nowrap">
+                <span key={i} className="inline-flex items-center px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-[11px] whitespace-nowrap">
                   {t}
                 </span>
               ))}
@@ -602,7 +620,7 @@ function Hero() {
 
       {/* scroll cue */}
       <a href="#about" aria-label="Scroll to About"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-slate-400 hover:text-sky-500 dark:hover:text-sky-400 transition-colors group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors group"
         style={f(1200)}
       >
         <span className="text-[9px] uppercase tracking-widest">Scroll</span>
@@ -632,13 +650,13 @@ function About() {
             <div className="grid grid-cols-2 gap-3 mb-9">
               {STATS.map((s) => (
                 <div key={s.label}
-                  className="flex flex-col items-center justify-center p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-center hover:border-sky-400/50 dark:hover:border-sky-500/50 transition-colors"
+                  className="flex flex-col items-center justify-center p-5 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] text-center hover:border-[var(--border-hover)] transition-colors"
                 >
-                  <span className="text-2xl md:text-3xl font-black bg-gradient-to-r from-sky-500 to-purple-500 bg-clip-text text-transparent leading-none mb-1">
+                  <span className="text-2xl md:text-3xl font-black text-[var(--accent)] leading-none mb-1">
                     <AnimCounter num={s.num} suffix={s.suffix} />
                   </span>
-                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-200">{s.label}</span>
-                  <span className="text-[10px] text-slate-400 mt-0.5">{s.sub}</span>
+                  <span className="text-xs font-semibold text-[var(--fg)]">{s.label}</span>
+                  <span className="text-[10px] text-[var(--accent-muted)] mt-0.5">{s.sub}</span>
                 </div>
               ))}
             </div>
@@ -648,7 +666,7 @@ function About() {
           <div className="space-y-4 mb-8">
             {ABOUT.paragraphs.map((p, i) => (
               <Reveal key={i} delay={i * 130}>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">{p}</p>
+                <p className="text-sm md:text-base text-[var(--accent-muted)] leading-relaxed">{p}</p>
               </Reveal>
             ))}
           </div>
@@ -657,10 +675,10 @@ function About() {
           <Reveal delay={300}>
             <div className="flex flex-wrap gap-3">
               <a href={HERO.cvUrl} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 text-white text-sm font-bold shadow-sm shadow-sky-500/30 hover:scale-[1.03] transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-sm hover:scale-[1.03] transition-all"
               ><ExternalLink size={13} /> View Full CV</a>
               <a href={HERO.github} target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-bold hover:border-sky-400 hover:text-sky-600 dark:hover:text-sky-400 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--border)] text-[var(--fg)] text-sm font-bold hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-all"
               ><Github size={13} /> GitHub</a>
             </div>
           </Reveal>
@@ -670,12 +688,12 @@ function About() {
         <div className="grid grid-cols-2 gap-3">
           {ABOUT_IMAGES.map((img, i) => (
             <Reveal key={img.label} delay={i * 80}>
-              <div className="group relative aspect-square overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 shadow-sm hover:shadow-xl hover:shadow-sky-500/15 hover:border-sky-400/50 dark:hover:border-sky-500/50 transition-all duration-350 hover:-translate-y-1">
+              <div className="group relative aspect-square overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm hover:shadow-xl hover:border-[var(--border-hover)] transition-all duration-350 hover:-translate-y-1">
                 <img src={img.src} alt={img.label} loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute bottom-3 left-3 right-3 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="inline-block rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-semibold text-white border border-sky-500/40">
+                  <span className="inline-block rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-semibold text-white border border-[var(--accent)]/40">
                     {img.label}
                   </span>
                 </div>
@@ -701,7 +719,7 @@ function Projects() {
     : PROJECTS.filter((p) => FILTERS.find((f) => f.label === filter)?.match.includes(p.tag));
 
   return (
-    <section id="projects" className="border-y border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-950/60">
+    <section id="projects" className="border-y border-[var(--border)] bg-[var(--card-bg)]/70">
       <div className="max-w-7xl mx-auto px-6 py-24">
         <SectionLabel title="Featured Projects" sub="Selected Work" />
 
@@ -712,11 +730,11 @@ function Projects() {
               <button key={label} onClick={() => setFilter(label)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all duration-200 ${
                   filter === label
-                    ? "bg-gradient-to-r from-sky-500 to-blue-600 text-white border-transparent shadow-sm shadow-sky-500/30 scale-105"
-                    : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-300 hover:border-sky-400 hover:text-sky-600 dark:hover:text-sky-400"
+                    ? "bg-[var(--accent)] text-[var(--bg)] border-transparent shadow-sm scale-105"
+                    : "border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] hover:border-[var(--border-hover)] hover:text-[var(--accent)]"
                 }`}
               >{label}
-                <span className={`ml-1.5 text-[10px] ${filter === label ? "text-white/80" : "text-slate-400 dark:text-slate-500"}`}>
+                <span className={`ml-1.5 text-[10px] ${filter === label ? "opacity-70" : "text-[var(--accent-muted)]"}`}>
                   {label === "All" ? PROJECTS.length : PROJECTS.filter(p => FILTERS.find(f => f.label === label)?.match.includes(p.tag)).length}
                 </span>
               </button>
@@ -728,10 +746,10 @@ function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {list.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
-              <article className={`card card-shimmer flex flex-col h-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:shadow-xl dark:hover:shadow-slate-900/60 hover:-translate-y-1 transition-all duration-300 ${BORDER_CLS[p.color] ?? BORDER_CLS.sky}`}>
+              <article className={`card card-shimmer flex flex-col h-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${BORDER_CLS[p.color] ?? BORDER_CLS.sky}`}>
 
                 {/* ── Fixed-height media (16 : 9) ── */}
-                <div className="aspect-video w-full overflow-hidden rounded-t-2xl bg-slate-100 dark:bg-slate-800 shrink-0">
+                <div className="aspect-video w-full overflow-hidden rounded-t-2xl bg-[var(--card-bg)] shrink-0">
                   {p.type === "video" ? (
                     <iframe
                       className="w-full h-full"
@@ -752,19 +770,19 @@ function Projects() {
                 <div className="flex flex-col flex-1 p-5">
                   {/* number + tag */}
                   <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-[10px] font-bold text-slate-300 dark:text-slate-600 tabular-nums">{p.num}</span>
+                    <span className="text-[10px] font-bold text-[var(--accent-muted)] tabular-nums">{p.num}</span>
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${TAG_CLS[p.color] ?? TAG_CLS.sky}`}>
                       {p.tag}
                     </span>
                   </div>
 
                   {/* title */}
-                  <h3 className="text-sm md:text-base font-bold text-slate-900 dark:text-slate-50 leading-snug mb-2 line-clamp-2">
+                  <h3 className="text-sm md:text-base font-bold text-[var(--fg)] leading-snug mb-2 line-clamp-2">
                     {p.title}
                   </h3>
 
                   {/* description — fixed 3 lines */}
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3 flex-1">
+                  <p className="text-xs text-[var(--accent-muted)] leading-relaxed line-clamp-3 flex-1">
                     {p.desc}
                   </p>
 
@@ -785,7 +803,7 @@ function Projects() {
         {list.length === 0 && (
           <div className="text-center py-20">
             <p className="text-4xl mb-3">🔍</p>
-            <p className="text-sm text-slate-400 dark:text-slate-500">No projects in this category yet.</p>
+            <p className="text-sm text-[var(--accent-muted)]">No projects in this category yet.</p>
           </div>
         )}
       </div>
@@ -803,38 +821,55 @@ function Contact() {
       <SectionLabel title="Get In Touch" sub="Let's Connect" />
 
       <Reveal delay={0}>
-        <p className="text-center text-sm md:text-base text-slate-600 dark:text-slate-300 max-w-md mx-auto mb-12 leading-relaxed">
+        <p className="text-center text-sm md:text-base text-[var(--accent-muted)] max-w-md mx-auto mb-12 leading-relaxed">
           Open to data roles, freelance projects, and collaborations. Reach out and let's build something together.
         </p>
       </Reveal>
 
-      {/* 3 equal contact cards */}
-      <div className="grid sm:grid-cols-3 gap-5 mb-10">
-        {CONTACT.map(({ id, icon: Icon, label, value, href, color }, i) => (
+      {/* 5 contact cards — top row 3, bottom row 2 centered */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+        {CONTACT.map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
           <Reveal key={id} delay={i * 90}>
             <a href={href}
               target={id === "email" ? "_self" : "_blank"}
               rel={id === "email" ? undefined : "noopener noreferrer"}
-              className={`card group flex flex-col items-center p-7 bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
+              className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
             >
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-colors ${ICON_BG[color] ?? ICON_BG.sky}`}>
-                <Icon size={24} className={ICON_CLS[color] ?? ICON_CLS.sky} />
+              {/* Icon with glow ring on hover */}
+              <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG[color] ?? ICON_BG.sky}`}>
+                <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS[color] ?? ICON_CLS.sky}`} />
               </div>
-              <span className="text-sm font-bold text-slate-800 dark:text-slate-100 mb-1">{label}</span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 break-all text-center">{value}</span>
+              <span className="text-base font-bold text-[var(--fg)] mb-1">{label}</span>
+              <span className="text-xs text-[var(--accent-muted)] break-all text-center mb-2">{value}</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[var(--accent)] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                {desc}
+              </span>
             </a>
           </Reveal>
         ))}
       </div>
 
+      {/* Bottom row: last 2 cards centered */}
+      <style>{`
+        @media (min-width: 1024px) {
+          #contact .grid > :nth-child(4) { grid-column: 1 / 2; margin-left: auto; margin-right: 0; }
+          #contact .grid > :nth-child(5) { grid-column: 2 / 4; margin-left: 0; margin-right: auto; }
+          #contact .grid > :nth-child(4),
+          #contact .grid > :nth-child(5) { max-width: calc((100% - 1.25rem) / 2); }
+          #contact .grid { justify-items: center; }
+          #contact .grid > :nth-child(4) { justify-self: end; }
+          #contact .grid > :nth-child(5) { justify-self: start; }
+        }
+      `}</style>
+
       {/* Dual CTA */}
       <Reveal delay={280} className="text-center">
         <div className="inline-flex flex-col sm:flex-row gap-3 items-center">
           <a href={HERO.cvUrl} download
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-sky-500 to-purple-600 text-white text-sm font-bold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/45 hover:scale-[1.04] transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all"
           >Download Resume <ExternalLink size={13} /></a>
           <a href={`mailto:${HERO.email}`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 text-slate-700 dark:text-slate-200 text-sm font-bold hover:border-sky-400 hover:text-sky-600 dark:hover:text-sky-300 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm font-bold hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-all"
           ><Mail size={13} /> Send Email</a>
         </div>
       </Reveal>
@@ -848,30 +883,30 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50">
+    <footer className="border-t border-[var(--border)] bg-[var(--card-bg)]/50">
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-5">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-500 to-purple-600 flex items-center justify-center text-white text-xs font-black shadow-sm shadow-sky-500/30">MA</div>
+            <div className="w-9 h-9 rounded-xl bg-[var(--accent)] flex items-center justify-center text-[var(--bg)] text-xs font-black shadow-sm">MA</div>
             <div>
-              <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{HERO.name}</p>
-              <p className="text-[11px] text-slate-400">© {new Date().getFullYear()} · Built with Next.js & Tailwind CSS</p>
+              <p className="text-sm font-bold text-[var(--fg)]">{HERO.name}</p>
+              <p className="text-[11px] text-[var(--accent-muted)]">© {new Date().getFullYear()} · Built with Next.js & Tailwind CSS</p>
             </div>
           </div>
           <div className="flex gap-2.5">
             {[
-              { h: `mailto:${HERO.email}`, I: Mail,     l: "Email",    c: "hover:text-sky-500    hover:border-sky-400/60"    },
-              { h: HERO.github,            I: Github,   l: "GitHub",   c: "hover:text-purple-500 hover:border-purple-400/60" },
-              { h: HERO.linkedin,          I: Linkedin, l: "LinkedIn", c: "hover:text-blue-500   hover:border-blue-400/60"   },
-            ].map(({ h, I, l, c }) => (
+              { h: `mailto:${HERO.email}`, I: Mail,     l: "Email"    },
+              { h: HERO.github,            I: Github,   l: "GitHub"   },
+              { h: HERO.linkedin,          I: Linkedin, l: "LinkedIn" },
+            ].map(({ h, I, l }) => (
               <a key={l} href={h} target={l === "Email" ? "_self" : "_blank"} rel={l === "Email" ? undefined : "noopener noreferrer"} aria-label={l}
-                className={`p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-slate-400 dark:text-slate-500 ${c} transition-all hover:scale-110`}
+                className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all hover:scale-110"
               ><I size={15} /></a>
             ))}
           </div>
         </div>
-        <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800/50 text-center">
-          <a href="#top" className="text-xs text-slate-400 hover:text-sky-500 dark:hover:text-sky-400 transition-colors group inline-flex items-center gap-1.5">
+        <div className="mt-6 pt-6 border-t border-[var(--border)] text-center">
+          <a href="#top" className="text-xs text-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors group inline-flex items-center gap-1.5">
             Back to top <span className="group-hover:-translate-y-0.5 transition-transform inline-block">↑</span>
           </a>
         </div>
@@ -889,7 +924,9 @@ export default function Home() {
   return (
     <>
       <ScrollBar />
-      <main className="min-h-screen bg-slate-50 dark:bg-[#020617] text-slate-900 dark:text-slate-100">
+      {/* Scanlines overlay — both modes */}
+      <div className="scanlines" />
+      <main className="min-h-screen bg-[var(--bg)] text-[var(--fg)]">
         <Header dark={dark} toggle={toggle} />
         <Hero />
         <About />

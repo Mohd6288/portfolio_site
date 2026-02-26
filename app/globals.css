@@ -4,34 +4,229 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ── Theme variables ── */
-:root  { --bg: #f8fafc; --fg: #0f172a; }
-.dark  { --bg: #020617; --fg: #f1f5f9; }
+:root {
+  --bg: #f4f1e8;
+  --fg: #1a1a1a;
+  --accent: #5c4a32;
+  --accent-bright: #8b4513;
+  --accent-muted: #8b7355;
+  --border: #c4b89a;
+  --border-hover: #8b7355;
+  --card-bg: #ece8dc;
+  --card-border: #d4cbb5;
+  --tag-bg: #e8e2d4;
+  --tag-text: #5c4a32;
+  --link: #4a5568;
+  --link-hover: #1a1a1a;
+  --glow: rgba(139, 69, 19, 0.15);
+  --scanline-color: rgba(0, 0, 0, 0.04);
+  --glitch-r: #cc3333;
+  --glitch-b: #3333cc;
+}
+.dark {
+  --bg: #0a0a0f;
+  --fg: #e2e8f0;
+  --accent: #00ff88;
+  --accent-bright: #00ffaa;
+  --accent-muted: #4ade80;
+  --border: #1a2a1a;
+  --border-hover: #2a4a2a;
+  --card-bg: rgba(10, 15, 10, 0.85);
+  --card-border: #1a2a1a;
+  --tag-bg: rgba(0, 255, 136, 0.08);
+  --tag-text: #4ade80;
+  --link: #00ff88;
+  --link-hover: #a7f3d0;
+  --glow: rgba(0, 255, 136, 0.1);
+  --scanline-color: rgba(0, 255, 136, 0.015);
+  --glitch-r: #ff0040;
+  --glitch-b: #00ffcc;
+}
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-retro: var(--font-retro);
 }
 
 * { scroll-behavior: smooth; box-sizing: border-box; }
 
+/* ── Body: retro monospace in BOTH modes ── */
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: var(--font-retro), "Courier New", "Courier", monospace;
+  -webkit-font-smoothing: auto;
+  letter-spacing: 0.01em;
+  animation: flicker 4s infinite;
 }
+
+/* ── Paper/digital noise texture (both modes) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--scanline-color) 2px,
+      var(--scanline-color) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      var(--scanline-color) 3px,
+      var(--scanline-color) 4px
+    );
+}
+:root body::before { opacity: 0.6; }
+.dark body::before { opacity: 0.9; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar           { width: 5px; }
-::-webkit-scrollbar-track     { background: #f1f5f9; }
-.dark ::-webkit-scrollbar-track { background: #0f172a; }
-::-webkit-scrollbar-thumb     { background: #94a3b8; border-radius: 3px; }
-.dark ::-webkit-scrollbar-thumb { background: #334155; }
-::-webkit-scrollbar-thumb:hover { background: #64748b; }
+::-webkit-scrollbar-track     { background: var(--card-bg); }
+::-webkit-scrollbar-thumb     { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
 
-/* ── Keyframes ── */
+/* ═══════════════════════════════════════
+   GLITCH & RETRO KEYFRAMES
+═══════════════════════════════════════ */
+
+@keyframes glitch {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  2% {
+    clip-path: inset(15% 0 65% 0);
+    transform: translate(-5px, 3px);
+  }
+  4% {
+    clip-path: inset(65% 0 5% 0);
+    transform: translate(5px, -2px);
+  }
+  6% {
+    clip-path: inset(35% 0 35% 0);
+    transform: translate(-3px, 1px);
+  }
+  8% {
+    clip-path: inset(80% 0 2% 0);
+    transform: translate(4px, -3px);
+  }
+  10% {
+    clip-path: inset(5% 0 80% 0);
+    transform: translate(-2px, 4px);
+  }
+  12% {
+    clip-path: inset(50% 0 25% 0);
+    transform: translate(3px, -1px);
+  }
+  14%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-r {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  3% {
+    clip-path: inset(25% 0 55% 0);
+    transform: translate(4px, -2px);
+  }
+  5% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(-4px, 3px);
+  }
+  7% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(3px, -3px);
+  }
+  9% {
+    clip-path: inset(45% 0 30% 0);
+    transform: translate(-5px, 2px);
+  }
+  11% {
+    clip-path: inset(85% 0 3% 0);
+    transform: translate(2px, -1px);
+  }
+  13%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+/* Stronger glitch for hover — more chaotic */
+@keyframes glitch-intense {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0) skewX(0);
+  }
+  5% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-8px, 4px) skewX(-2deg);
+  }
+  10% {
+    clip-path: inset(70% 0 5% 0);
+    transform: translate(8px, -3px) skewX(3deg);
+  }
+  15% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(-5px, 2px) skewX(-1deg);
+  }
+  20% {
+    clip-path: inset(85% 0 2% 0);
+    transform: translate(6px, -5px) skewX(2deg);
+  }
+  25% {
+    clip-path: inset(5% 0 85% 0);
+    transform: translate(-3px, 6px) skewX(-3deg);
+  }
+  30%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0) skewX(0);
+  }
+}
+
+@keyframes scanline-scroll {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes flicker {
+  0%, 95%, 100% { opacity: 1; }
+  96%           { opacity: 0.90; }
+  97%           { opacity: 0.96; }
+  98%           { opacity: 0.88; }
+  99%           { opacity: 0.94; }
+}
+
+@keyframes text-shadow-glitch {
+  0%, 100% { text-shadow: none; }
+  2%       { text-shadow: -2px 0 var(--glitch-r), 2px 0 var(--glitch-b); }
+  4%       { text-shadow: 2px 0 var(--glitch-r), -2px 0 var(--glitch-b); }
+  6%       { text-shadow: -1px 1px var(--glitch-r), 1px -1px var(--glitch-b); }
+  8%, 100% { text-shadow: none; }
+}
+
+@keyframes border-glitch {
+  0%, 90%, 100% { border-color: var(--card-border); }
+  92%           { border-color: var(--glitch-r); }
+  94%           { border-color: var(--glitch-b); }
+  96%           { border-color: var(--accent); }
+  98%           { border-color: var(--card-border); }
+}
+
+/* ── Existing keyframes ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -59,7 +254,128 @@ body {
   75%, 100% { transform: scale(2); opacity: 0; }
 }
 
-/* ── Utility classes ── */
+/* ═══════════════════════════════════════
+   GLITCH TEXT  (BOTH MODES)
+═══════════════════════════════════════ */
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  animation: text-shadow-glitch 3s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch-text::before {
+  color: var(--glitch-r);
+  animation: glitch 2.5s infinite linear;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  color: var(--glitch-b);
+  animation: glitch-r 2.5s infinite linear;
+  animation-delay: 0.1s;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+/* Intensify on hover */
+.glitch-text:hover::before {
+  animation: glitch-intense 1s infinite linear;
+  opacity: 0.9;
+}
+.glitch-text:hover::after {
+  animation: glitch-intense 1s infinite linear reverse;
+  opacity: 0.9;
+}
+
+/* Secondary glitch for section titles */
+.glitch-sub {
+  animation: text-shadow-glitch 5s infinite;
+}
+
+/* ═══════════════════════════════════════
+   SCANLINES OVERLAY (BOTH MODES)
+═══════════════════════════════════════ */
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scanline-color) 2px,
+    var(--scanline-color) 4px
+  );
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--scanline-color);
+  box-shadow: 0 0 12px 4px var(--glow);
+  animation: scanline-scroll 6s linear infinite;
+}
+
+/* ═══════════════════════════════════════
+   RETRO UTILITY CLASSES (BOTH MODES)
+═══════════════════════════════════════ */
+
+/* Section number */
+.retro-section-num {
+  font-family: var(--font-retro), "Courier New", monospace;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* Retro horizontal rule */
+.retro-hr {
+  border: none;
+  border-top: 1px dashed var(--border);
+  margin: 1rem 0;
+}
+
+/* Archive stamp look */
+.retro-stamp {
+  border: 2px dashed var(--border);
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  color: var(--accent-muted);
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════
+   UTILITY ANIMATION CLASSES
+═══════════════════════════════════════ */
+
 .animate-float-a  { animation: floatY 7s  ease-in-out infinite; }
 .animate-float-b  { animation: floatY 10s ease-in-out infinite; }
 .animate-float-c  { animation: floatY 8s  ease-in-out 2s infinite; }
@@ -68,20 +384,26 @@ body {
 .animate-ticker   { animation: ticker 30s linear infinite; }
 .animate-ticker:hover { animation-play-state: paused; }
 
-/* ── Card top-line glow on hover ── */
+/* ═══════════════════════════════════════
+   CARD STYLES (BOTH MODES)
+═══════════════════════════════════════ */
+
 .card {
   position: relative;
   overflow: hidden;
+  animation: border-glitch 8s infinite;
 }
+
+/* Card overlay on hover — themed glow */
 .card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(135deg,
-    rgba(14,165,233,.12) 0%,
-    rgba(168,85,247,.12) 50%,
-    rgba(236,72,153,.12) 100%);
+    var(--glow) 0%,
+    transparent 50%,
+    var(--glow) 100%);
   opacity: 0;
   transition: opacity .35s ease;
   pointer-events: none;
@@ -90,26 +412,32 @@ body {
 .card:hover::before { opacity: 1; }
 .card > * { position: relative; z-index: 1; }
 
+/* Card top-line — accent color */
 .card::after {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #0ea5e9, #a855f7, #ec4899);
+  background: var(--accent);
   opacity: 0;
   transition: opacity .35s ease;
   border-radius: inherit;
 }
 .card:hover::after { opacity: 1; }
 
-/* ── Shimmer sweep on card hover ── */
+/* Card hover — offset shadow (retro feel) */
+.card:hover {
+  box-shadow: 4px 4px 0 var(--border), 0 0 15px var(--glow);
+}
+
+/* ── Shimmer sweep — both modes ── */
 .card-shimmer::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(105deg,
     transparent 35%,
-    rgba(255,255,255,.07) 50%,
+    var(--glow) 50%,
     transparent 65%);
   transform: translateX(-110%) skewX(-10deg);
   pointer-events: none;
@@ -117,4 +445,34 @@ body {
 }
 .card-shimmer:hover::after {
   animation: shimmerSweep .75s ease forwards;
+}
+
+/* ═══════════════════════════════════════
+   RETRO OVERRIDES (BOTH MODES)
+═══════════════════════════════════════ */
+
+/* Reduce border-radius for document feel */
+.rounded-2xl { border-radius: 4px !important; }
+.rounded-xl  { border-radius: 3px !important; }
+.rounded-lg  { border-radius: 2px !important; }
+
+/* Dashed borders everywhere */
+.border { border-style: dashed !important; }
+.border-t { border-top-style: dashed !important; }
+.border-y { border-top-style: dashed !important; border-bottom-style: dashed !important; }
+.border-b { border-bottom-style: dashed !important; }
+
+/* Dark mode: neon terminal glow on key elements */
+.dark .glitch-text {
+  text-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow);
+}
+
+/* CRT vignette in dark mode */
+.dark body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.4) 100%);
 }
