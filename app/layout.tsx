@@ -18,14 +18,21 @@ const courierPrime = Courier_Prime({
   subsets: ["latin"],
 });
 
+const baseUrl = process.env.SITE_URL || "https://mohammedalkhalifa.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(baseUrl),
   title: "Mohammed Alkhalifa | Junior Data Analyst | Power BI • Excel • SQL • Python",
   description: "Junior Data Analyst with First-Class Honours in Creative Computing from Goldsmiths, University of London. Specializing in data analytics, reporting, dashboards, and business intelligence using Power BI, Excel, SQL, and Python. Supporting digital transformation aligned with Saudi Vision 2030.",
-  keywords: ["Mohammed Alkhalifa", "Data Analyst", "Power BI", "Excel", "SQL", "Python", "Data Analytics", "Business Intelligence", "Machine Learning", "Data Visualization", "Saudi Vision 2030"],
+  keywords: ["Mohammed Alkhalifa", "محمد الخليفة", "Data Analyst", "Power BI", "Excel", "SQL", "Python", "Data Analytics", "Business Intelligence", "Machine Learning", "Data Visualization", "Saudi Vision 2030", "Dammam", "Saudi Arabia"],
   authors: [{ name: "Mohammed Alkhalifa" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: baseUrl,
     title: "Mohammed Alkhalifa | Junior Data Analyst",
     description: "Junior Data Analyst specializing in reporting, dashboards, and business intelligence using Power BI, Excel, SQL, and Python.",
     siteName: "Mohammed Alkhalifa Portfolio",
