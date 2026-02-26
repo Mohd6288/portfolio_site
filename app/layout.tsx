@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || "PASTE_YOUR_GOOGLE_CODE_HERE",
+    other: {
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION || "PASTE_YOUR_BING_CODE_HERE",
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -49,8 +55,48 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Mohammed Alkhalifa",
+    alternateName: "محمد الخليفة",
+    jobTitle: "Junior Data Analyst",
+    url: baseUrl,
+    email: "M.alkhalifah@hotmail.com",
+    telephone: "+966540005871",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Dammam",
+      addressCountry: "SA",
+    },
+    worksFor: {
+      "@type": "Organization",
+      name: "Advanced Micro Technologies",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Alkhobar",
+        addressCountry: "SA",
+      },
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Goldsmiths, University of London",
+    },
+    knowsAbout: ["Power BI", "Python", "SQL", "Excel", "Machine Learning", "Data Analytics", "Data Visualization"],
+    sameAs: [
+      "https://github.com/Mohd6288",
+      "https://www.linkedin.com/in/mohammed-alkhalifa-68322b1bb/",
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${courierPrime.variable} antialiased`}
       >
