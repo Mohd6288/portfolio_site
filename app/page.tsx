@@ -20,7 +20,7 @@ const HERO = {
     "Building clear reports, dashboards, and stakeholder-ready visuals using Power BI, Python, SQL, and Excel — aligned with Saudi Vision 2030.",
   email: "M.alkhalifah@hotmail.com",
   github: "https://github.com/Mohd6288",
-  linkedin: "https://linkedin.com/in/mohammed-a-alkhalifa-68322b1bb",
+  linkedin: "www.linkedin.com/in/mohammed-alkhalifa-68322b1bb",
   cvUrl: "/Mohammed-Alkhalifa-Data-analyst.pdf",
 };
 
