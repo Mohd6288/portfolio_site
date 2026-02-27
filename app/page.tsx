@@ -94,13 +94,13 @@ const PROJECTS = [
   {
     id: "style-diffusion",
     num: "04",
-    title: "Real-Time Style Camera",
-    tag: "Engineering",
+    title: "AI Style Diffusion Camera",
+    tag: "AI & ML",
     color: "purple",
     type: "image" as const,
     media: "/images/image_9.png",
-    desc: "Live webcam effects app — apply 6 visual styles (vintage, B&W, retro, comic, cartoon, anime) in real time using Canvas pixel processing, 100% client-side.",
-    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera.vercel.app/" },
+    desc: "AI-powered style transfer app — transform photos into vintage, B&W, comic, cartoon, or anime art using Stable Diffusion (FLUX.1-Kontext) via HuggingFace, plus instant canvas filters.",
+    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera-git-6f101e-mohd6288s-projects.vercel.app/" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
   {
