@@ -143,8 +143,9 @@ const PROJECTS = [
     color: "emerald",
     type: "image" as const,
     media: "/images/image_6.png",
-    desc: "Full-stack Q&A forum built with SQL and server-side scripting — share coding tips and grow a learning community.",
-    link: { label: "Visit Live Site", url: "http://doc.gold.ac.uk/usr/700/" },
+    desc: "Modern community forum built with Next.js & Tailwind — user auth, topic categories, posts with likes, threaded replies, and full-text search.",
+    link: { label: "Visit Live Site", url: "https://forum-app-ten-eta.vercel.app/" },
+    link2: { label: "GitHub", url: "https://github.com/Mohd6288/forumApp" },
   },
   {
     id: "arduino-pomodoro",
