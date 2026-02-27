@@ -99,8 +99,9 @@ const PROJECTS = [
     color: "teal",
     type: "image" as const,
     media: "/images/image_9.png",
-    desc: "Stable Diffusion Gradio app — transforms webcam photos into old-film, comic, cartoon, and anime styles in real time.",
-    link: { label: "View on GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
+    desc: "Real-time webcam style transfer — 6 artistic filters (vintage, comic, anime, and more) with live preview and canvas pixel processing, all client-side.",
+    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera.vercel.app/" },
+    link2: { label: "GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
   {
     id: "dj-app",
