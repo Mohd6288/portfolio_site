@@ -75,7 +75,7 @@ const PROJECTS = [
     tag: "Full Stack",
     color: "emerald",
     type: "image" as const,
-    media: "/images/vision2030-quiz.svg",
+    media: "/images/vision2030-quiz.png",
     desc: "AI-powered Saudi Arabia quiz game — 120+ questions, 6 categories, interactive story mode, adaptive difficulty, hints, sound effects, Arabic bilingual UI, and leaderboard.",
     link: { label: "Play Live", url: "https://vision2030-quiz-game.vercel.app/" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/vision2030-QuizGame" },
