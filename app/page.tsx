@@ -69,8 +69,20 @@ const PROJECTS = [
     link: { label: "Visit Live Site", url: "https://amt-doccon.up.railway.app/login" },
   },
   {
-    id: "platform-adventure",
+    id: "vision2030-quiz",
     num: "02",
+    title: "Vision 2030 Quiz Arena",
+    tag: "Full Stack",
+    color: "emerald",
+    type: "image" as const,
+    media: "/images/vision2030-quiz.svg",
+    desc: "AI-powered Saudi Arabia quiz game — 120+ questions, 6 categories, interactive story mode, adaptive difficulty, hints, sound effects, Arabic bilingual UI, and leaderboard.",
+    link: { label: "Play Live", url: "https://vision2030-quiz-game.vercel.app/" },
+    link2: { label: "GitHub", url: "https://github.com/Mohd6288/vision2030-QuizGame" },
+  },
+  {
+    id: "platform-adventure",
+    num: "03",
     title: "Platform Adventure Game",
     tag: "Game Dev",
     color: "amber",
@@ -82,7 +94,7 @@ const PROJECTS = [
   },
   {
     id: "ai-body-tracking",
-    num: "03",
+    num: "04",
     title: "AI Body Tracking Installation",
     tag: "AI & ML",
     color: "sky",
@@ -93,7 +105,7 @@ const PROJECTS = [
   },
   {
     id: "style-diffusion",
-    num: "04",
+    num: "05",
     title: "AI Style Diffusion Camera",
     tag: "AI & ML",
     color: "purple",
@@ -105,7 +117,7 @@ const PROJECTS = [
   },
   {
     id: "dj-app",
-    num: "05",
+    num: "06",
     title: "C++ DJ Application",
     tag: "Audio",
     color: "pink",
@@ -116,7 +128,7 @@ const PROJECTS = [
   },
   {
     id: "ml-fever",
-    num: "06",
+    num: "07",
     title: "ML: Fever Classification",
     tag: "Machine Learning",
     color: "teal",
@@ -127,7 +139,7 @@ const PROJECTS = [
   },
   {
     id: "diffusion-jellyfish",
-    num: "07",
+    num: "08",
     title: "Diffusion: Jellyfish Generation",
     tag: "Machine Learning",
     color: "teal",
@@ -138,7 +150,7 @@ const PROJECTS = [
   },
   {
     id: "knowledge-sharing",
-    num: "08",
+    num: "09",
     title: "Knowledge Sharing Forum",
     tag: "Full Stack",
     color: "emerald",
@@ -150,7 +162,7 @@ const PROJECTS = [
   },
   {
     id: "arduino-pomodoro",
-    num: "09",
+    num: "10",
     title: "Arduino Pomodoro Timer",
     tag: "IoT",
     color: "purple",
@@ -161,7 +173,7 @@ const PROJECTS = [
   },
   {
     id: "travel-app",
-    num: "10",
+    num: "11",
     title: "Travel App Prototype",
     tag: "UX / UI",
     color: "indigo",
