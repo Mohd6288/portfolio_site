@@ -28,7 +28,7 @@ const HERO = {
 const STATS = [
   { num: 1,    suffix: "st", label: "Class Honours",    sub: "Goldsmiths, London" },
   { num: 2,    suffix: "+",  label: "Years Experience", sub: "Data Analytics"     },
-  { num: 10,   suffix: "+",  label: "Projects",         sub: "Multiple Domains"   },
+  { num: 12,   suffix: "+",  label: "Projects",         sub: "Multiple Domains"   },
   { num: 2030, suffix: "",   label: "Vision Aligned",   sub: "Saudi Arabia"       },
 ];
 
@@ -81,8 +81,20 @@ const PROJECTS = [
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/vision2030-QuizGame" },
   },
   {
-    id: "platform-adventure",
+    id: "map-poster",
     num: "03",
+    title: "MapPoster — City Map Generator",
+    tag: "Full Stack",
+    color: "emerald",
+    type: "image" as const,
+    media: "/images/map-poster-dammam.png",
+    desc: "Generate beautiful, minimalist map posters for any city — 17 themes, live preview, multilingual support, and export to PNG, SVG, or PDF. Built with Next.js, Canvas API, and OpenStreetMap data.",
+    link: { label: "Try Live Demo", url: "https://map-poster-two.vercel.app" },
+    link2: { label: "GitHub", url: "https://github.com/Mohd6288/MapPoster" },
+  },
+  {
+    id: "platform-adventure",
+    num: "04",
     title: "Platform Adventure Game",
     tag: "Game Dev",
     color: "amber",
@@ -94,7 +106,7 @@ const PROJECTS = [
   },
   {
     id: "ai-body-tracking",
-    num: "04",
+    num: "05",
     title: "AI Body Tracking Installation",
     tag: "AI & ML",
     color: "sky",
@@ -105,7 +117,7 @@ const PROJECTS = [
   },
   {
     id: "style-diffusion",
-    num: "05",
+    num: "06",
     title: "AI Style Diffusion Camera",
     tag: "AI & ML",
     color: "purple",
@@ -117,7 +129,7 @@ const PROJECTS = [
   },
   {
     id: "dj-app",
-    num: "06",
+    num: "07",
     title: "C++ DJ Application",
     tag: "Audio",
     color: "pink",
@@ -128,7 +140,7 @@ const PROJECTS = [
   },
   {
     id: "ml-fever",
-    num: "07",
+    num: "08",
     title: "ML: Fever Classification",
     tag: "Machine Learning",
     color: "teal",
@@ -139,7 +151,7 @@ const PROJECTS = [
   },
   {
     id: "diffusion-jellyfish",
-    num: "08",
+    num: "09",
     title: "Diffusion: Jellyfish Generation",
     tag: "Machine Learning",
     color: "teal",
@@ -150,7 +162,7 @@ const PROJECTS = [
   },
   {
     id: "knowledge-sharing",
-    num: "09",
+    num: "10",
     title: "Knowledge Sharing Forum",
     tag: "Full Stack",
     color: "emerald",
@@ -162,7 +174,7 @@ const PROJECTS = [
   },
   {
     id: "arduino-pomodoro",
-    num: "10",
+    num: "11",
     title: "Arduino Pomodoro Timer",
     tag: "IoT",
     color: "purple",
@@ -173,7 +185,7 @@ const PROJECTS = [
   },
   {
     id: "travel-app",
-    num: "11",
+    num: "12",
     title: "Travel App Prototype",
     tag: "UX / UI",
     color: "indigo",
