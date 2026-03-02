@@ -112,7 +112,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/image_9.png",
     desc: "AI-powered style transfer app — transform photos into vintage, B&W, comic, cartoon, or anime art using Stable Diffusion (FLUX.1-Kontext) via HuggingFace, plus instant canvas filters.",
-    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera-git-6f101e-mohd6288s-projects.vercel.app/" },
+    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera-9w.vercel.app/" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
   {
