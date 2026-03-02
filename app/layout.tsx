@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   verification: {
-    google: process.env.GOOGLE_SITE_VERIFICATION || "PASTE_YOUR_GOOGLE_CODE_HERE",
+    google: "google81179bd5f65b7a03",
     other: {
-      "msvalidate.01": process.env.BING_SITE_VERIFICATION || "PASTE_YOUR_BING_CODE_HERE",
+      "msvalidate.01": "1531D1D480A27EB374BAA1B60602CAED",
     },
   },
   openGraph: {
