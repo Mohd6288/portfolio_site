@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@huggingface/inference": "^4.13.14",
     "jspdf": "^4.2.0",
     "lucide-react": "^0.511.0",
     "next": "^15.5.7",

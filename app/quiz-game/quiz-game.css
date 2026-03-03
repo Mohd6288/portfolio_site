@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════
+   QUIZ GAME — SCOPED STYLES
+   All rules scoped under .quiz-scope
+   to prevent collision with the portfolio.
+═══════════════════════════════════════ */
+
+/* ── Variables (scoped to .quiz-scope) ── */
+.quiz-scope {
+  --bg:           #0a0f0d;
+  --surface:      #111a16;
+  --card:         #182420;
+  --card-hover:   #1f2e28;
+  --border:       #2a3d34;
+  --border-hover: #3a5548;
+  --fg:           #e8f0eb;
+  --muted:        #7a9688;
+  --accent:       #006C35;
+  --accent-hover: #008842;
+  --gold:         #FFD700;
+  --gold-dim:     #B8960C;
+  --success:      #22c55e;
+  --danger:       #ef4444;
+  --warning:      #f59e0b;
+}
+
+/* ── Portfolio override reset ── */
+.quiz-scope {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  animation: none;
+  letter-spacing: normal;
+  position: relative;
+  z-index: 9999;
+}
+.quiz-scope *, .quiz-scope *::before, .quiz-scope *::after {
+  box-sizing: border-box;
+  border-style: solid;
+  animation-name: none;
+}
+
+/* ── Re-enable scoped animations ── */
+
+/* Undo the blanket animation reset for elements that actually need animation */
+.quiz-scope .fade-up { animation: quiz-fadeUp 0.5s ease forwards; }
+.quiz-scope .pulse-glow { animation: quiz-pulseGlow 3s ease-in-out infinite; }
+.quiz-scope .shake { animation: quiz-shake 0.4s ease; }
+.quiz-scope .slide-up { animation: quiz-slideUp 0.35s ease forwards; }
+.quiz-scope .score-pop { animation: quiz-scorePop 0.8s ease forwards; }
+.quiz-scope .streak-fire { animation: quiz-streakFire 0.5s ease; }
+.quiz-scope .correct-pulse { animation: quiz-correctPulse 0.6s ease; }
+.quiz-scope .timer-urgent { animation: quiz-timerUrgent 0.5s ease infinite; }
+.quiz-scope .float { animation: quiz-float 4s ease-in-out infinite; }
+.quiz-scope .float-delayed { animation: quiz-float 4s ease-in-out 2s infinite; }
+.quiz-scope .shimmer-text { animation: quiz-shimmer 4s linear infinite; }
+.quiz-scope .scale-in { animation: quiz-scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.quiz-scope .rotate-slow { animation: quiz-rotateSlow 30s linear infinite; }
+.quiz-scope .count-fade { animation: quiz-countFade 0.5s ease forwards; }
+.quiz-scope .animate-spin { animation: quiz-spin 1s linear infinite; }
+.quiz-scope .animate-pulse { animation: quiz-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* ── Scrollbar (scoped) ── */
+.quiz-scope ::-webkit-scrollbar { width: 6px; }
+.quiz-scope ::-webkit-scrollbar-track { background: var(--bg); }
+.quiz-scope ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.quiz-scope ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Focus ── */
+.quiz-scope *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Scroll behavior ── */
+.quiz-scope { scroll-behavior: smooth; }
+
+/* ── Subtle pattern background ── */
+.quiz-scope::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23006C35' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z' fill='none' stroke='%23FFD700' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  opacity: 0.3;
+}
+
+/* ═══════════════════════════════════
+   ARABIC TEXT
+═══════════════════════════════════ */
+.quiz-scope .ar {
+  font-family: var(--font-arabic), "Segoe UI", Tahoma, sans-serif;
+  direction: rtl;
+  unicode-bidi: isolate;
+}
+
+/* ═══════════════════════════════════
+   KEYFRAMES (prefixed with quiz-)
+═══════════════════════════════════ */
+
+@keyframes quiz-fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes quiz-pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,108,53,0.3); }
+  50%      { box-shadow: 0 0 40px rgba(0,108,53,0.5); }
+}
+
+@keyframes quiz-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes quiz-slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes quiz-scorePop {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  50%  { transform: translateY(-12px) scale(1.3); }
+  100% { opacity: 0; transform: translateY(-24px) scale(0.9); }
+}
+
+@keyframes quiz-streakFire {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.2); }
+}
+
+@keyframes quiz-correctPulse {
+  0%   { box-shadow: 0 0 0 rgba(34,197,94,0); }
+  50%  { box-shadow: 0 0 30px rgba(34,197,94,0.4); }
+  100% { box-shadow: 0 0 0 rgba(34,197,94,0); }
+}
+
+@keyframes quiz-timerUrgent {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.6; }
+}
+
+@keyframes quiz-float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-12px); }
+}
+
+@keyframes quiz-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes quiz-scaleIn {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+  60%  { transform: scale(1.1) rotate(3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes quiz-particleFloat {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+@keyframes quiz-confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(300px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes quiz-rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes quiz-countFade {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes quiz-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes quiz-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* ═══════════════════════════════════
+   UTILITY CLASSES (scoped)
+═══════════════════════════════════ */
+
+.quiz-scope .gradient-border {
+  position: relative;
+}
+.quiz-scope .gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), var(--gold), var(--accent));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.quiz-scope .glow-accent { box-shadow: 0 0 20px rgba(0,108,53,0.3), 0 0 60px rgba(0,108,53,0.1); }
+.quiz-scope .glow-gold   { box-shadow: 0 0 20px rgba(255,215,0,0.3), 0 0 60px rgba(255,215,0,0.1); }
+.quiz-scope .glow-hover:hover { box-shadow: 0 0 30px rgba(0,108,53,0.4), 0 0 80px rgba(0,108,53,0.15); }
+
+.quiz-scope .glass {
+  background: rgba(17,26,22,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(42,61,52,0.5);
+}
+
+.quiz-scope .pattern-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 40L40 80L0 40Z' fill='none' stroke='%23006C35' stroke-width='0.5' opacity='0.15'/%3E%3Cpath d='M40 10L70 40L40 70L10 40Z' fill='none' stroke='%23FFD700' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+.quiz-scope .shimmer-text {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 50%, var(--accent) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.quiz-scope .hint-button {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--warning);
+  transition: all 0.2s ease;
+}
+.quiz-scope .hint-button:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.2);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+}
+.quiz-scope .hint-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quiz-scope .timer-ring {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+.quiz-scope .timer-ring circle {
+  transition: stroke-dashoffset 1s linear;
+}
+
+.quiz-scope .category-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.quiz-scope .category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* ═══════════════════════════════════
+   PORTFOLIO OVERRIDES
+   Undo retro styling from portfolio globals
+═══════════════════════════════════ */
+
+/* Restore border-radius (portfolio forces 2-4px) */
+.quiz-scope .rounded-2xl { border-radius: 1rem !important; }
+.quiz-scope .rounded-xl  { border-radius: 0.75rem !important; }
+.quiz-scope .rounded-lg  { border-radius: 0.5rem !important; }
+.quiz-scope .rounded-full { border-radius: 9999px !important; }
+
+/* Restore solid borders (portfolio forces dashed) */
+.quiz-scope .border { border-style: solid !important; }
+.quiz-scope .border-t { border-top-style: solid !important; }
+.quiz-scope .border-b { border-bottom-style: solid !important; }
+.quiz-scope .border-y { border-top-style: solid !important; border-bottom-style: solid !important; }

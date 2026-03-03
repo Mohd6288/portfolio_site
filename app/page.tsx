@@ -77,7 +77,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/vision2030-quiz.png",
     desc: "AI-powered Saudi Arabia quiz game — 120+ questions, 6 categories, interactive story mode, adaptive difficulty, hints, sound effects, Arabic bilingual UI, and leaderboard.",
-    link: { label: "Play Live", url: "https://vision2030-quiz-game.vercel.app/" },
+    link: { label: "Open App", url: "/quiz-game" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/vision2030-QuizGame" },
   },
   {
@@ -101,7 +101,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/platform-adventure.svg",
     desc: "Multi-level 2D platformer built with p5.js — 5 levels, dash & wall-jump mechanics, weather system, combo scoring, enemy AI, leaderboard, and mobile support.",
-    link: { label: "Play Live", url: "https://game-project-sooty-phi.vercel.app" },
+    link: { label: "Open App", url: "/platform-game" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/gameProject" },
   },
   {
@@ -124,7 +124,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/image_9.png",
     desc: "AI-powered style transfer app — transform photos into vintage, B&W, comic, cartoon, or anime art using Stable Diffusion (FLUX.1-Kontext) via HuggingFace, plus instant canvas filters.",
-    link: { label: "Try Live Demo", url: "https://real-time-style-diffusion-camera-9w.vercel.app/" },
+    link: { label: "Open App", url: "/style-camera" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
   {
@@ -169,7 +169,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/image_6.png",
     desc: "Modern community forum built with Next.js & Tailwind — user auth, topic categories, posts with likes, threaded replies, and full-text search.",
-    link: { label: "Visit Live Site", url: "https://forum-app-ten-eta.vercel.app/" },
+    link: { label: "Open App", url: "/forum" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/forumApp" },
   },
   {

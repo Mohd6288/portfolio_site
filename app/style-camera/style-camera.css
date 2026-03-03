@@ -1,0 +1,128 @@
+/* ══════════════════════════════════════════════════════════════
+   AI Style Diffusion Camera – Scoped styles
+   All rules under .style-camera-scope
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── CSS Variables ──────────────────────────────────────────── */
+.style-camera-scope {
+  --bg:      #020617;
+  --surface: #0f172a;
+  --card:    #1e293b;
+  --border:  #334155;
+  --fg:      #f1f5f9;
+  --muted:   #94a3b8;
+  --accent:  #8b5cf6;
+  --accent2: #a78bfa;
+}
+
+/* ── Scope reset ────────────────────────────────────────────── */
+.style-camera-scope {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  line-height: 1.5;
+  animation: none;
+  letter-spacing: normal;
+  position: relative;
+  z-index: 9999;
+}
+
+.style-camera-scope *,
+.style-camera-scope *::before,
+.style-camera-scope *::after {
+  box-sizing: border-box;
+  border-style: solid;
+  animation-name: none;
+}
+
+/* Re-enable specific animations */
+.style-camera-scope .fade-up {
+  animation: sc-fadeUp 0.5s ease forwards;
+}
+
+.style-camera-scope .animate-pulse {
+  animation: sc-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.style-camera-scope .animate-spin {
+  animation: sc-spin 1s linear infinite;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+.style-camera-scope ::-webkit-scrollbar { width: 6px; }
+.style-camera-scope ::-webkit-scrollbar-track { background: var(--bg); }
+.style-camera-scope ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Back link ──────────────────────────────────────────────── */
+.style-camera-scope .sc-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color 150ms ease;
+}
+
+.style-camera-scope .sc-back-link:hover {
+  color: var(--accent);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.style-camera-scope .sc-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  background: rgba(2, 6, 23, 0.9);
+  border-bottom: 1px solid var(--border);
+}
+
+.style-camera-scope .sc-header nav {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+}
+
+.style-camera-scope .sc-header a {
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.style-camera-scope .sc-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+.style-camera-scope .sc-footer span {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* ── Keyframes (prefixed sc-) ───────────────────────────────── */
+@keyframes sc-fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sc-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes sc-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes sc-pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139,92,246,0.3); }
+  50%      { box-shadow: 0 0 40px rgba(139,92,246,0.5); }
+}

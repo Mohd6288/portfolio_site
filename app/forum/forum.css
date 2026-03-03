@@ -1,0 +1,180 @@
+/* ═══════════════════════════════════════
+   FORUM SCOPED STYLES
+   All rules scoped under .forum-scope
+   to avoid conflicts with portfolio CSS.
+═══════════════════════════════════════ */
+
+/* ── Variables & Base Reset ── */
+.forum-scope {
+  --bg:          #0b0b12;
+  --surface:     #111119;
+  --card:        #16161f;
+  --card-hover:  #1c1c28;
+  --border:      #262636;
+  --border-hover:#3a3a50;
+  --fg:          #e4e4ef;
+  --muted:       #8888a0;
+  --accent:      #6366f1;
+  --accent-hover:#818cf8;
+  --accent-muted:#4f46e5;
+  --success:     #22c55e;
+  --danger:      #ef4444;
+  --warning:     #f59e0b;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--fg);
+  min-height: 100vh;
+  animation: none;
+  letter-spacing: normal;
+  position: relative;
+  z-index: 9999;
+}
+
+.forum-scope *, .forum-scope *::before, .forum-scope *::after {
+  box-sizing: border-box;
+  border-style: solid;
+  animation-name: none;
+}
+
+/* Re-enable specific forum animations */
+.forum-scope .fade-up {
+  animation: forum-fadeUp 0.5s ease forwards !important;
+}
+.forum-scope .animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* ── Scrollbar ── */
+.forum-scope ::-webkit-scrollbar { width: 6px; }
+.forum-scope ::-webkit-scrollbar-track { background: var(--bg); }
+.forum-scope ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.forum-scope ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ── Focus ring ── */
+.forum-scope *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Inputs ── */
+.forum-scope input, .forum-scope textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.forum-scope input:focus, .forum-scope textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+.forum-scope input::placeholder, .forum-scope textarea::placeholder {
+  color: var(--muted);
+}
+.forum-scope textarea { resize: vertical; min-height: 100px; }
+
+/* ── Utility ── */
+.forum-scope .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.forum-scope .btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.forum-scope .btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+}
+.forum-scope .btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.forum-scope .btn-ghost:hover {
+  border-color: var(--border-hover);
+  color: var(--fg);
+}
+.forum-scope .btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+.forum-scope .btn-danger:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ── Card ── */
+.forum-scope .card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  transition: all 0.25s;
+}
+.forum-scope .card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ── Avatar ── */
+.forum-scope .avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.forum-scope .avatar-sm { width: 32px; height: 32px; }
+.forum-scope .avatar-md { width: 40px; height: 40px; }
+.forum-scope .avatar-lg { width: 48px; height: 48px; }
+
+/* ── Topic badge ── */
+.forum-scope .topic-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.875rem;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+/* ── Fade-in animation (prefixed) ── */
+@keyframes forum-fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Tag ── */
+.forum-scope .tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
