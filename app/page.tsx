@@ -89,7 +89,7 @@ const PROJECTS = [
     type: "image" as const,
     media: "/images/map-poster-dammam.png",
     desc: "Generate beautiful, minimalist map posters for any city — 17 themes, live preview, multilingual support, and export to PNG, SVG, or PDF. Built with Next.js, Canvas API, and OpenStreetMap data.",
-    link: { label: "Try Live Demo", url: "https://map-poster-two.vercel.app" },
+    link: { label: "Open App", url: "/map-poster" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/MapPoster" },
   },
   {
