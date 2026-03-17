@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Mail, Github, Linkedin, Phone, MessageCircle,
   Menu, X, Moon, Monitor,
-  ExternalLink, ArrowRight, MapPin,
+  ExternalLink, ArrowRight, MapPin, Send, CheckCircle, AlertCircle,
 } from "lucide-react";
 
 /* ═══════════════════════════════════════
@@ -489,6 +489,14 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
           <span className="w-px h-5 bg-[var(--border)] mx-2" />
 
+          <a
+            href="/ar"
+            className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)] hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-all hover:scale-105 text-xs font-bold"
+            title="عربي"
+          >
+            AR
+          </a>
+
           <button
             onClick={toggle}
             aria-label="Toggle theme"
@@ -507,6 +515,7 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
         {/* Mobile controls */}
         <div className="md:hidden flex items-center gap-2">
+          <a href="/ar" className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)] text-xs font-bold" title="عربي">AR</a>
           <button onClick={toggle} aria-label="Toggle theme"
             className="p-2 rounded-lg border border-[var(--border)] bg-[var(--card-bg)] text-[var(--accent-muted)]"
           >
@@ -821,7 +830,7 @@ function Projects() {
 
                   {/* title */}
                   <h3 className="text-sm md:text-base font-bold text-[var(--fg)] leading-snug mb-2 line-clamp-2">
-                    {p.title}
+                    <a href={`/projects/${p.id}`} className="hover:text-[var(--accent)] transition-colors">{p.title}</a>
                   </h3>
 
                   {/* description — fixed 3 lines */}
@@ -879,16 +888,15 @@ function Contact() {
         </p>
       </Reveal>
 
-      {/* 5 contact cards — top row 3, bottom row 2 centered */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-        {CONTACT.map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
+      {/* Top row: 3 cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+        {CONTACT.slice(0, 3).map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
           <Reveal key={id} delay={i * 90}>
             <a href={href}
               target={id === "email" ? "_self" : "_blank"}
               rel={id === "email" ? undefined : "noopener noreferrer"}
               className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
             >
-              {/* Icon with glow ring on hover */}
               <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG[color] ?? ICON_BG.sky}`}>
                 <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS[color] ?? ICON_CLS.sky}`} />
               </div>
@@ -902,31 +910,108 @@ function Contact() {
         ))}
       </div>
 
-      {/* Bottom row: last 2 cards centered */}
-      <style>{`
-        @media (min-width: 1024px) {
-          #contact .grid > :nth-child(4) { grid-column: 1 / 2; margin-left: auto; margin-right: 0; }
-          #contact .grid > :nth-child(5) { grid-column: 2 / 4; margin-left: 0; margin-right: auto; }
-          #contact .grid > :nth-child(4),
-          #contact .grid > :nth-child(5) { max-width: calc((100% - 1.25rem) / 2); }
-          #contact .grid { justify-items: center; }
-          #contact .grid > :nth-child(4) { justify-self: end; }
-          #contact .grid > :nth-child(5) { justify-self: start; }
-        }
-      `}</style>
+      {/* Bottom row: 2 cards centered */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-10">
+        {CONTACT.slice(3).map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
+          <Reveal key={id} delay={(i + 3) * 90}>
+            <a href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
+            >
+              <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG[color] ?? ICON_BG.sky}`}>
+                <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS[color] ?? ICON_CLS.sky}`} />
+              </div>
+              <span className="text-base font-bold text-[var(--fg)] mb-1">{label}</span>
+              <span className="text-xs text-[var(--accent-muted)] break-all text-center mb-2">{value}</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[var(--accent)] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                {desc}
+              </span>
+            </a>
+          </Reveal>
+        ))}
+      </div>
 
-      {/* Dual CTA */}
-      <Reveal delay={280} className="text-center">
-        <div className="inline-flex flex-col sm:flex-row gap-3 items-center">
-          <a href={HERO.cvUrl} download
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all"
-          >Download Resume <ExternalLink size={13} /></a>
-          <a href={`mailto:${HERO.email}`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm font-bold hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-all"
-          ><Mail size={13} /> Send Email</a>
-        </div>
+      {/* Contact Form */}
+      <Reveal delay={200}>
+        <ContactForm />
       </Reveal>
     </section>
+  );
+}
+
+/* ═══════════════════════════════════════
+   CONTACT FORM
+═══════════════════════════════════════ */
+
+function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div className="max-w-xl mx-auto mt-6 mb-10">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input
+            name="name" type="text" required placeholder="Your Name"
+            className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm placeholder:text-[var(--accent-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
+          />
+          <input
+            name="email" type="email" required placeholder="Your Email"
+            className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm placeholder:text-[var(--accent-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
+          />
+        </div>
+        <input
+          name="subject" type="text" required placeholder="Subject"
+          className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm placeholder:text-[var(--accent-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors"
+        />
+        <textarea
+          name="message" required rows={5} placeholder="Your Message..."
+          className="w-full px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--fg)] text-sm placeholder:text-[var(--accent-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
+        />
+        <div className="flex items-center gap-4">
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all disabled:opacity-60 disabled:hover:scale-100"
+          >
+            {status === "sending" ? "Sending..." : "Send Message"} <Send size={14} />
+          </button>
+          {status === "sent" && (
+            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-500">
+              <CheckCircle size={16} /> Sent!
+            </span>
+          )}
+          {status === "error" && (
+            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-500">
+              <AlertCircle size={16} /> Failed. Try again.
+            </span>
+          )}
+        </div>
+      </form>
+    </div>
   );
 }
 

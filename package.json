@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@huggingface/inference": "^4.13.14",
+    "@vercel/analytics": "^2.0.1",
+    "framer-motion": "^12.38.0",
     "jspdf": "^4.2.0",
     "lucide-react": "^0.511.0",
     "next": "^15.5.7",

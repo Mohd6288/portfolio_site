@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Courier_Prime } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,6 +29,10 @@ export const metadata: Metadata = {
   authors: [{ name: "Mohammed Alkhalifa" }],
   alternates: {
     canonical: "/",
+    languages: {
+      en: "/",
+      ar: "/ar",
+    },
   },
   verification: {
     google: "google81179bd5f65b7a03",
@@ -92,6 +97,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#d4a373" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -101,6 +109,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${courierPrime.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
