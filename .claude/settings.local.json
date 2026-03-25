@@ -11,7 +11,11 @@
       "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
       "Bash(npm --version:*)",
       "Bash(cmd.exe /c:*)",
-      "WebFetch(domain:registry.npmjs.org)"
+      "WebFetch(domain:registry.npmjs.org)",
+      "Bash(npx next:*)",
+      "Bash(npm install:*)",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(node node_modules/typescript/bin/tsc --noEmit --pretty)"
     ],
     "deny": [],
     "ask": []

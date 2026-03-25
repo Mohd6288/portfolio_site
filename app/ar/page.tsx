@@ -4,6 +4,7 @@ import {
   Mail, Github, Linkedin, Phone, MessageCircle,
   Menu, X, Moon, Monitor,
   ExternalLink, ArrowRight, MapPin, Send, CheckCircle, AlertCircle,
+  Globe, BarChart3, Bot, Smartphone, Database, Palette,
 } from "lucide-react";
 
 /* ═══════════════════════════════════════
@@ -17,7 +18,7 @@ const HERO = {
   location: "الدمام، السعودية",
   workplace: "Advanced Micro Technologies, KSA",
   tagline:
-    "أبني تقارير واضحة وداشبوردات ومرئيات جاهزة لأصحاب القرار باستخدام Power BI و Python و SQL و Excel — ماشي مع رؤية 2030.",
+    "أحوّل البيانات الخام إلى تقارير واضحة ولوحات معلومات تفاعلية وعروض بصرية جاهزة لصنّاع القرار — باستخدام Power BI و Python و SQL و Excel، تماشياً مع رؤية السعودية 2030.",
   email: "M.alkhalifah@hotmail.com",
   github: "https://github.com/Mohd6288",
   linkedin: "https://www.linkedin.com/in/mohammed-alkhalifa-68322b1bb/",
@@ -26,18 +27,18 @@ const HERO = {
 };
 
 const STATS = [
-  { num: 1,    suffix: "st", label: "مرتبة الشرف الأولى", sub: "جولدسميث، لندن" },
-  { num: 2,    suffix: "+",  label: "سنوات خبرة",          sub: "تحليل بيانات"   },
-  { num: 12,   suffix: "+",  label: "مشروع",               sub: "مجالات متعددة"   },
-  { num: 2030, suffix: "",   label: "متوافق مع الرؤية",    sub: "السعودية"        },
+  { num: 1,    suffix: "st", label: "مرتبة الشرف الأولى", sub: "جولدسميث، جامعة لندن" },
+  { num: 2,    suffix: "+",  label: "سنوات خبرة",          sub: "بيانات وتحليلات"     },
+  { num: 12,   suffix: "+",  label: "مشروع",               sub: "في مجالات متنوعة"     },
+  { num: 2030, suffix: "",   label: "متوافق مع الرؤية",    sub: "المملكة العربية السعودية" },
 ];
 
 const ABOUT = {
-  heading: "عني أنا",
-  subtitle: "خلفيتي وتركيزي",
+  heading: "نبذة عني",
+  subtitle: "الخلفية والتخصص",
   paragraphs: [
-    "خريج حوسبة إبداعية من جامعة جولدسميث، لندن (2025) بمرتبة الشرف الأولى. متخصص في تحليل البيانات وتعلم الآلة وذكاء الأعمال. حالياً أشتغل محلل بيانات في شركة Advanced Micro Technologies في الخبر.",
-    "قبل كذا كنت أشتغل مشغّل مصنع كيميائي في شركة صدارة — يعني عندي انضباط تشغيلي ودقة في التفاصيل أطبقها في كل مشروع تحليل بيانات. شغوف بالتحول الرقمي ورؤية السعودية 2030.",
+    "خريج حوسبة إبداعية من جامعة جولدسميث بلندن (2025) بمرتبة الشرف الأولى. تخصصي في تحليل البيانات وتعلم الآلة وذكاء الأعمال، وحالياً أعمل محلل بيانات في شركة Advanced Micro Technologies بالخبر.",
+    "قبل دخولي مجال التقنية اشتغلت مشغّل مصنع كيميائي في شركة صدارة، وهالتجربة علّمتني الانضباط والدقة في التفاصيل — صفات أطبقها في كل مشروع تحليل بيانات. شغوف بالمساهمة في التحوّل الرقمي ضمن رؤية السعودية 2030.",
   ],
 };
 
@@ -64,8 +65,8 @@ const PROJECTS = [
     color: "emerald",
     type: "image" as const,
     media: "/images/AMT Logo Trans.png",
-    desc: "نظام إدارة وثائق أوتوماتيكي — يعالج الإيميلات عن طريق IMAP، يصنّف المستندات حسب النوع والتخصص، يولّد أرقام إرسال متسلسلة، ويسجّل المراسلات في إكسل.",
-    link: { label: "زور الموقع", url: "https://amt-doccon.up.railway.app/login" },
+    desc: "نظام إدارة وثائق مؤتمت — يعالج الإيميلات عبر IMAP، يصنّف المستندات حسب النوع والتخصص، يولّد أرقام إرسال متسلسلة، ويسجّل كل المراسلات تلقائياً في إكسل.",
+    link: { label: "افتح التطبيق", url: "https://amt-doccon.up.railway.app/login" },
   },
   {
     id: "vision2030-quiz",
@@ -75,7 +76,7 @@ const PROJECTS = [
     color: "emerald",
     type: "image" as const,
     media: "/images/vision2030-quiz.png",
-    desc: "لعبة كويز عن السعودية بالذكاء الاصطناعي — أكثر من 120 سؤال، 6 فئات، وضع القصة التفاعلي، صعوبة متكيّفة، تلميحات، مؤثرات صوتية، واجهة عربي/إنقليزي، ولوحة متصدرين.",
+    desc: "لعبة أسئلة ذكية عن السعودية — أكثر من 120 سؤال في 6 فئات، وضع قصة تفاعلي، صعوبة تتكيّف مع مستواك، تلميحات ومؤثرات صوتية، واجهة ثنائية اللغة، ولوحة متصدرين.",
     link: { label: "افتح التطبيق", url: "/quiz-game" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/vision2030-QuizGame" },
   },
@@ -87,7 +88,7 @@ const PROJECTS = [
     color: "emerald",
     type: "image" as const,
     media: "/images/map-poster-dammam.png",
-    desc: "ولّد بوسترات خرائط حلوة ومينيمال لأي مدينة — 17 ثيم، معاينة مباشرة، دعم لغات متعددة، وتصدير PNG أو SVG أو PDF. مبني بـ Next.js و Canvas API و OpenStreetMap.",
+    desc: "أنشئ ملصقات خرائط أنيقة وبسيطة لأي مدينة — 17 نمطاً بصرياً، معاينة مباشرة، دعم لغات متعددة، وتصدير بصيغة PNG أو SVG أو PDF. مبني بـ Next.js و Canvas API و OpenStreetMap.",
     link: { label: "افتح التطبيق", url: "/map-poster" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/MapPoster" },
   },
@@ -99,7 +100,7 @@ const PROJECTS = [
     color: "amber",
     type: "image" as const,
     media: "/images/platform-adventure.svg",
-    desc: "لعبة بلاتفورمر ثنائية الأبعاد — 5 مراحل، ميكانيكيات داش وقفز على الجدران، نظام طقس، نقاط كومبو، ذكاء اصطناعي للأعداء، لوحة متصدرين، ودعم الجوال.",
+    desc: "لعبة منصات ثنائية الأبعاد بخمس مراحل — فيها اندفاع وقفز على الجدران، نظام طقس، نقاط مضاعفة، ذكاء اصطناعي للأعداء، لوحة متصدرين، ودعم كامل للجوال.",
     link: { label: "افتح التطبيق", url: "/platform-game" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/gameProject" },
   },
@@ -111,7 +112,7 @@ const PROJECTS = [
     color: "sky",
     type: "video" as const,
     media: "https://www.youtube.com/embed/7O4HrpV3EY0",
-    desc: "تتبع حركة الجسم بالوقت الحقيقي يشغّل مرئيات وأصوات توليدية باستخدام MediaPipe و TouchDesigner.",
+    desc: "تتبع حركة الجسم بالوقت الحقيقي لتشغيل مرئيات توليدية وأصوات مكانية باستخدام MediaPipe و TouchDesigner.",
     link: { label: "شوفه على GitHub", url: "https://github.com/Mohd6288/CCP_Final_-NO_Name_yet-.git" },
   },
   {
@@ -122,7 +123,7 @@ const PROJECTS = [
     color: "purple",
     type: "image" as const,
     media: "/images/image_9.png",
-    desc: "تطبيق نقل أنماط بالذكاء الاصطناعي — حوّل صورك لستايل فينتج أو أبيض وأسود أو كوميك أو كرتون أو أنمي باستخدام Stable Diffusion عن طريق HuggingFace، مع فلاتر كانفس فورية.",
+    desc: "تطبيق نقل أنماط بالذكاء الاصطناعي — حوّل صورك إلى أسلوب كلاسيكي أو أبيض وأسود أو كوميك أو كرتون أو أنمي عبر Stable Diffusion و HuggingFace، مع فلاتر فورية.",
     link: { label: "افتح التطبيق", url: "/style-camera" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/real-time-style-diffusion-camera" },
   },
@@ -134,7 +135,7 @@ const PROJECTS = [
     color: "pink",
     type: "video" as const,
     media: "https://www.youtube.com/embed/fomGKOAOfXk",
-    desc: "تطبيق DJ مكتبي بـ C++ مع مكس بالوقت الحقيقي، مزامنة BPM، واجهة موجات صوتية مخصصة، وتحكم بالأداء المباشر.",
+    desc: "تطبيق DJ مكتبي مبني بـ C++ — مكس لحظي، مزامنة إيقاع تلقائية، واجهة موجات صوتية مخصصة، وأدوات تحكم بالأداء المباشر.",
     link: { label: "شوفه على GitHub", url: "https://github.com/Mohd6288/DJ_app.git" },
   },
   {
@@ -145,7 +146,7 @@ const PROJECTS = [
     color: "teal",
     type: "image" as const,
     media: "/images/image_7.png",
-    desc: "دفتر تعلم آلي كامل على بيانات طبية: معالجة مسبقة، هندسة الميزات، تدريب النموذج والتقييم.",
+    desc: "دفتر تعلم آلي شامل على بيانات طبية — يغطي المعالجة المسبقة وهندسة الخصائص وتدريب النموذج وتقييم الأداء.",
     link: { label: "شوف الدفتر", url: "https://drive.google.com/file/d/1BtOluXAlnDgXSrvaN2xdLFEugEELoS-6/view?usp=sharing" },
   },
   {
@@ -156,7 +157,7 @@ const PROJECTS = [
     color: "teal",
     type: "image" as const,
     media: "/images/image_8.png",
-    desc: "نموذج Diffusion يولّد صور قناديل بحر متنوعة — يغطي تجهيز البيانات، إعدادات النموذج، التدريب، والتقييم.",
+    desc: "نموذج Diffusion مدرَّب لتوليد صور متنوعة لقناديل البحر — يغطي تجهيز البيانات وإعدادات النموذج والتدريب والتقييم.",
     link: { label: "شوف الدفتر", url: "https://colab.research.google.com/drive/1QrN0vTAFjN8g0K39j_B1DYpe_LRs3QUb?usp=sharing" },
   },
   {
@@ -167,7 +168,7 @@ const PROJECTS = [
     color: "emerald",
     type: "image" as const,
     media: "/images/image_6.png",
-    desc: "منتدى مجتمعي عصري مبني بـ Next.js و Tailwind — تسجيل دخول، تصنيفات مواضيع، بوستات بلايكات، ردود متسلسلة، وبحث نصي كامل.",
+    desc: "منتدى مجتمعي عصري مبني بـ Next.js و Tailwind — يدعم تسجيل الدخول، تصنيفات المواضيع، منشورات بإعجابات، ردود متسلسلة، وبحث نصي شامل.",
     link: { label: "افتح التطبيق", url: "/forum" },
     link2: { label: "GitHub", url: "https://github.com/Mohd6288/forumApp" },
   },
@@ -179,7 +180,7 @@ const PROJECTS = [
     color: "purple",
     type: "video" as const,
     media: "https://www.youtube.com/embed/VT0XQL8e6lo",
-    desc: "مؤقت بومودورو هاردوير مبني بالأردوينو و LEDs — تغذية راجعة ملموسة لجلسات عمل مركّزة بدون تشتيت.",
+    desc: "مؤقت بومودورو مادي مبني بالأردوينو وأضواء LED — يوفر تنبيهات حسية لجلسات عمل مركّزة خالية من التشتيت.",
     link: { label: "شوفه على GitHub", url: "https://github.com/Mohd6288/pomodoro.git" },
   },
   {
@@ -190,17 +191,50 @@ const PROJECTS = [
     color: "indigo",
     type: "image" as const,
     media: "/images/image_5.png",
-    desc: "نموذج Figma تفاعلي لتطبيق سفر — تدفقات بديهية، تسلسل بصري نظيف، وتصميم محوره المستخدم.",
+    desc: "نموذج Figma تفاعلي لتطبيق سفر — تدفقات استخدام بديهية، تسلسل بصري نظيف، وتصميم يضع المستخدم في المقام الأول.",
     link: { label: "شوفه في Figma", url: "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" },
   },
 ];
 
 const CONTACT = [
-  { id: "email",    icon: Mail,          label: "إيميل",    value: HERO.email,  href: `mailto:${HERO.email}`,                        color: "sky",     desc: "أرسلي إيميل"       },
-  { id: "whatsapp", icon: MessageCircle, label: "واتساب",   value: HERO.phone,  href: `https://wa.me/${HERO.phone.replace("+","")}`, color: "emerald", desc: "كلمني واتساب"      },
-  { id: "phone",    icon: Phone,         label: "جوال",     value: HERO.phone,  href: `tel:${HERO.phone}`,                           color: "pink",    desc: "اتصل فيني"         },
-  { id: "github",   icon: Github,        label: "GitHub",   value: "@Mohd6288", href: HERO.github,                                   color: "purple",  desc: "شوف مشاريعي"       },
-  { id: "linkedin", icon: Linkedin,      label: "LinkedIn", value: "تواصل",     href: HERO.linkedin,                                 color: "indigo",  desc: "خلنا نتواصل"       },
+  { id: "email",    icon: Mail,          label: "البريد",   value: HERO.email,  href: `mailto:${HERO.email}`,                        color: "sky",     desc: "أرسل لي إيميل"     },
+  { id: "whatsapp", icon: MessageCircle, label: "واتساب",   value: HERO.phone,  href: `https://wa.me/${HERO.phone.replace("+","")}`, color: "emerald", desc: "راسلني على واتساب"  },
+  { id: "phone",    icon: Phone,         label: "الجوال",   value: HERO.phone,  href: `tel:${HERO.phone}`,                           color: "pink",    desc: "اتصل بي مباشرة"    },
+  { id: "github",   icon: Github,        label: "GitHub",   value: "@Mohd6288", href: HERO.github,                                   color: "purple",  desc: "استعرض مشاريعي"     },
+  { id: "linkedin", icon: Linkedin,      label: "LinkedIn", value: "تواصل",     href: HERO.linkedin,                                 color: "indigo",  desc: "تواصل معي"          },
+];
+
+const SERVICES = [
+  {
+    icon: Globe,
+    title: "تطوير مواقع",
+    desc: "مواقع وتطبيقات ويب مبنية بـ Next.js و React و Tailwind CSS — سريعة ومتجاوبة ومهيّأة لمحركات البحث.",
+  },
+  {
+    icon: BarChart3,
+    title: "لوحات معلومات وتقارير",
+    desc: "لوحات معلومات تفاعلية بـ Power BI و Tableau تحوّل البيانات الخام إلى رؤى عملية واضحة لصنّاع القرار.",
+  },
+  {
+    icon: Bot,
+    title: "أتمتة وسكربتات",
+    desc: "أتمتة سير العمل بـ Python — من خطوط بيانات وعمليات ETL إلى معالجة الإيميلات وأنظمة إدارة المستندات.",
+  },
+  {
+    icon: Smartphone,
+    title: "واجهات متجاوبة",
+    desc: "واجهات دقيقة ومتوافقة مع الجوال أولاً — تدفقات استخدام بديهية، إمكانية وصول عالية، وأنماط تصميم حديثة.",
+  },
+  {
+    icon: Database,
+    title: "تحليل بيانات",
+    desc: "تحليلات شاملة بـ Python و SQL و Excel — تنظيف البيانات والنمذجة الإحصائية والتصوير البصري المقنع.",
+  },
+  {
+    icon: Palette,
+    title: "تقنية إبداعية",
+    desc: "تركيبات تفاعلية ومرئيات توليدية ومشاريع تجريبية تمزج البرمجة بالإعلام الإبداعي والحوسبة الفيزيائية.",
+  },
 ];
 
 const FILTERS = [
@@ -404,7 +438,7 @@ function ScrollBar() {
   );
 }
 
-const SECTION_NUMS: Record<string, number> = { "عني أنا": 1, "مشاريعي المميزة": 2, "تواصل معي": 3 };
+const SECTION_NUMS: Record<string, number> = { "نبذة عني": 1, "خدمات فريلانس": 2, "مشاريعي المميزة": 3, "تواصل معي": 4 };
 function SectionLabel({ title, sub }: { title: string; sub?: string }) {
   const num = SECTION_NUMS[title] ?? 0;
   return (
@@ -435,7 +469,7 @@ function SectionLabel({ title, sub }: { title: string; sub?: string }) {
 function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
   const [open,    setOpen]    = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(["top", "about", "projects", "contact"]);
+  const active = useActiveSection(["top", "about", "services", "projects", "contact"]);
 
   useEffect(() => {
     const fn = () => setScrolled(scrollY > 24);
@@ -445,6 +479,7 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
   const NAV = [
     { id: "about",    href: "#about",    label: "عني" },
+    { id: "services", href: "#services", label: "خدماتي" },
     { id: "projects", href: "#projects", label: "مشاريعي" },
     { id: "contact",  href: "#contact",  label: "تواصل" },
   ];
@@ -587,7 +622,7 @@ function Hero() {
               <span className="animate-ping absolute inset-0 rounded-full bg-[var(--accent)] opacity-75" />
               <span className="relative w-2 h-2 rounded-full bg-[var(--accent)]" />
             </span>
-            متاح للفرص · {HERO.workplace}
+            متاح للفرص الوظيفية · {HERO.workplace}
           </span>
         </div>
 
@@ -754,6 +789,50 @@ function About() {
 }
 
 /* ═══════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════ */
+
+function Services() {
+  return (
+    <section id="services" className="border-y border-[var(--border)] bg-[var(--card-bg)]/70">
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <SectionLabel title="خدمات فريلانس" sub="حلول رقمية" />
+
+        <Reveal delay={0}>
+          <p className="text-center text-sm md:text-base text-[var(--accent-muted)] max-w-lg mx-auto mb-14 leading-relaxed">
+            متاح لمشاريع فريلانس — سواء تحتاج موقع كامل أو لوحة معلومات أو سكربت أتمتة أو مشروع تقنية إبداعية. خلّنا نحوّل فكرتك لمنتج رقمي متقن.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SERVICES.map(({ icon: Icon, title, desc }, i) => (
+            <Reveal key={title} delay={i * 80}>
+              <div className={`card group flex flex-col items-center text-center p-7 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 hover:border-[var(--accent)]`}>
+                <div className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]`}>
+                  <Icon size={26} className={`transition-transform duration-300 group-hover:scale-110 text-[var(--accent-muted)]`} />
+                </div>
+                <h3 className="text-sm font-bold text-[var(--fg)] mb-2">{title}</h3>
+                <p className="text-xs text-[var(--accent-muted)] leading-relaxed">{desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={500}>
+          <div className="flex justify-center mt-12">
+            <a href="#contact"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all"
+            >
+              ناقش مشروعك <ArrowRight size={15} className="rotate-180" />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════
    PROJECTS
 ═══════════════════════════════════════ */
 
@@ -870,11 +949,11 @@ function Projects() {
 function Contact() {
   return (
     <section id="contact" className="max-w-5xl mx-auto px-6 py-24">
-      <SectionLabel title="تواصل معي" sub="خلنا نتعرف" />
+      <SectionLabel title="تواصل معي" sub="خلّنا نتواصل" />
 
       <Reveal delay={0}>
         <p className="text-center text-sm md:text-base text-[var(--accent-muted)] max-w-md mx-auto mb-12 leading-relaxed">
-          متاح لوظائف البيانات، مشاريع فريلانس، وأي تعاون. كلمني وخلنا نسوي شي حلو مع بعض.
+          متاح لوظائف تحليل البيانات، مشاريع فريلانس، وأي تعاون إبداعي. تواصل معي وخلّنا نبني شيء مميز سوا.
         </p>
       </Reveal>
 
@@ -1035,7 +1114,7 @@ function Footer() {
         </div>
         <div className="mt-6 pt-6 border-t border-[var(--border)] text-center">
           <a href="#top" className="text-xs text-[var(--accent-muted)] hover:text-[var(--accent)] transition-colors group inline-flex items-center gap-1.5">
-            ارجع فوق <span className="group-hover:-translate-y-0.5 transition-transform inline-block">↑</span>
+            العودة للأعلى <span className="group-hover:-translate-y-0.5 transition-transform inline-block">↑</span>
           </a>
         </div>
       </div>
@@ -1057,6 +1136,7 @@ export default function HomeAr() {
         <Header dark={dark} toggle={toggle} />
         <Hero />
         <About />
+        <Services />
         <Projects />
         <Contact />
         <Footer />

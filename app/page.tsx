@@ -4,6 +4,7 @@ import {
   Mail, Github, Linkedin, Phone, MessageCircle,
   Menu, X, Moon, Monitor,
   ExternalLink, ArrowRight, MapPin, Send, CheckCircle, AlertCircle,
+  Globe, BarChart3, Bot, Smartphone, Database, Palette,
 } from "lucide-react";
 
 /* ═══════════════════════════════════════
@@ -13,11 +14,11 @@ import {
 const HERO = {
   name: "Mohammed Alkhalifa",
   title: "Junior Data Analyst",
-  roles: ["Data Analyst", "Power BI Developer", "ML Enthusiast", "Python Developer"],
+  roles: ["Data Analyst", "Freelance Developer", "Power BI Developer", "ML Enthusiast", "Python Developer"],
   location: "Dammam, Saudi Arabia",
   workplace: "Advanced Micro Technologies, KSA",
   tagline:
-    "Building clear reports, dashboards, and stakeholder-ready visuals using Power BI, Python, SQL, and Excel — aligned with Saudi Vision 2030.",
+    "Turning raw data into clear reports, interactive dashboards, and stakeholder-ready visuals with Power BI, Python, SQL, and Excel — driving decisions aligned with Saudi Vision 2030.",
   email: "M.alkhalifah@hotmail.com",
   github: "https://github.com/Mohd6288",
   linkedin: "https://www.linkedin.com/in/mohammed-alkhalifa-68322b1bb/",
@@ -26,9 +27,9 @@ const HERO = {
 };
 
 const STATS = [
-  { num: 1,    suffix: "st", label: "Class Honours",    sub: "Goldsmiths, London" },
-  { num: 2,    suffix: "+",  label: "Years Experience", sub: "Data Analytics"     },
-  { num: 12,   suffix: "+",  label: "Projects",         sub: "Multiple Domains"   },
+  { num: 1,    suffix: "st", label: "Class Honours",    sub: "Goldsmiths, University of London" },
+  { num: 2,    suffix: "+",  label: "Years Experience", sub: "Data & Analytics"   },
+  { num: 12,   suffix: "+",  label: "Projects",         sub: "Across Multiple Domains" },
   { num: 2030, suffix: "",   label: "Vision Aligned",   sub: "Saudi Arabia"       },
 ];
 
@@ -36,8 +37,8 @@ const ABOUT = {
   heading:  "About Me",
   subtitle: "Background & Focus",
   paragraphs: [
-    "Creative Computing graduate from Goldsmiths, University of London (2025) with First-Class Honours, specialising in data analytics, machine learning, and business intelligence. Currently a Data Analyst at Advanced Micro Technologies (AMT) in Alkhobar, Saudi Arabia.",
-    "Former Chemical Plant Operator at Sadara Chemical Company — I bring operational discipline and sharp attention to detail to every analytics project. Passionate about Saudi Vision 2030 digital transformation.",
+    "Creative Computing graduate from Goldsmiths, University of London (2025) with First-Class Honours. I specialise in data analytics, machine learning, and business intelligence, and I'm currently working as a Data Analyst at Advanced Micro Technologies (AMT) in Alkhobar, Saudi Arabia.",
+    "Before moving into tech I worked as a Chemical Plant Operator at Sadara Chemical Company, which taught me operational discipline and a keen eye for detail — qualities I carry into every analytics project. I'm passionate about contributing to Saudi Vision 2030's digital transformation.",
   ],
 };
 
@@ -56,17 +57,30 @@ const TECH_STACK = [
 ];
 
 /* All projects — same card size, NO wide flag — ordered by impact */
-const PROJECTS = [
+interface Project {
+  id: string;
+  num: string;
+  title: string;
+  tag: string;
+  color: string;
+  type: "video" | "image";
+  media: string;
+  desc: string;
+  link: { label: string; url: string };
+  link2?: { label: string; url: string };
+}
+
+const PROJECTS: Project[] = [
   {
     id: "document-control",
     num: "01",
     title: "AMT Document Control System",
     tag: "Full Stack",
     color: "emerald",
-    type: "image" as const,
+    type: "image",
     media: "/images/AMT Logo Trans.png",
     desc: "Automated document management system — processes emails via IMAP, classifies documents by type and discipline, generates sequential transmittal numbers, and logs correspondence in Excel.",
-    link: { label: "Visit Live Site", url: "https://amt-doccon.up.railway.app/login" },
+    link: { label: "Visit Live App", url: "https://amt-doccon.up.railway.app/login" },
   },
   {
     id: "vision2030-quiz",
@@ -74,7 +88,7 @@ const PROJECTS = [
     title: "Vision 2030 Quiz Arena",
     tag: "Full Stack",
     color: "emerald",
-    type: "image" as const,
+    type: "image",
     media: "/images/vision2030-quiz.png",
     desc: "AI-powered Saudi Arabia quiz game — 120+ questions, 6 categories, interactive story mode, adaptive difficulty, hints, sound effects, Arabic bilingual UI, and leaderboard.",
     link: { label: "Open App", url: "/quiz-game" },
@@ -86,7 +100,7 @@ const PROJECTS = [
     title: "MapPoster — City Map Generator",
     tag: "Full Stack",
     color: "emerald",
-    type: "image" as const,
+    type: "image",
     media: "/images/map-poster-dammam.png",
     desc: "Generate beautiful, minimalist map posters for any city — 17 themes, live preview, multilingual support, and export to PNG, SVG, or PDF. Built with Next.js, Canvas API, and OpenStreetMap data.",
     link: { label: "Open App", url: "/map-poster" },
@@ -98,7 +112,7 @@ const PROJECTS = [
     title: "Platform Adventure Game",
     tag: "Game Dev",
     color: "amber",
-    type: "image" as const,
+    type: "image",
     media: "/images/platform-adventure.svg",
     desc: "Multi-level 2D platformer built with p5.js — 5 levels, dash & wall-jump mechanics, weather system, combo scoring, enemy AI, leaderboard, and mobile support.",
     link: { label: "Open App", url: "/platform-game" },
@@ -110,9 +124,9 @@ const PROJECTS = [
     title: "AI Body Tracking Installation",
     tag: "AI & ML",
     color: "sky",
-    type: "video" as const,
+    type: "video",
     media: "https://www.youtube.com/embed/7O4HrpV3EY0",
-    desc: "Real-time body-movement tracking that triggers generative visuals and sound using MediaPipe and TouchDesigner.",
+    desc: "Real-time body-movement tracking that triggers generative visuals and spatial sound using MediaPipe and TouchDesigner.",
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/CCP_Final_-NO_Name_yet-.git" },
   },
   {
@@ -121,7 +135,7 @@ const PROJECTS = [
     title: "AI Style Diffusion Camera",
     tag: "AI & ML",
     color: "purple",
-    type: "image" as const,
+    type: "image",
     media: "/images/image_9.png",
     desc: "AI-powered style transfer app — transform photos into vintage, B&W, comic, cartoon, or anime art using Stable Diffusion (FLUX.1-Kontext) via HuggingFace, plus instant canvas filters.",
     link: { label: "Open App", url: "/style-camera" },
@@ -133,9 +147,9 @@ const PROJECTS = [
     title: "C++ DJ Application",
     tag: "Audio",
     color: "pink",
-    type: "video" as const,
+    type: "video",
     media: "https://www.youtube.com/embed/fomGKOAOfXk",
-    desc: "Desktop DJ app in C++ with real-time mixing, BPM sync, custom waveform UI, and live performance controls.",
+    desc: "Desktop DJ application built in C++ with real-time mixing, automatic BPM sync, custom waveform UI, and live performance controls.",
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/DJ_app.git" },
   },
   {
@@ -144,9 +158,9 @@ const PROJECTS = [
     title: "ML: Fever Classification",
     tag: "Machine Learning",
     color: "teal",
-    type: "image" as const,
+    type: "image",
     media: "/images/image_7.png",
-    desc: "End-to-end ML notebook on a medical dataset: preprocessing, feature engineering, model training and evaluation.",
+    desc: "End-to-end machine learning notebook on a medical dataset — covers preprocessing, feature engineering, model training, and evaluation.",
     link: { label: "View Notebook", url: "https://drive.google.com/file/d/1BtOluXAlnDgXSrvaN2xdLFEugEELoS-6/view?usp=sharing" },
   },
   {
@@ -155,9 +169,9 @@ const PROJECTS = [
     title: "Diffusion: Jellyfish Generation",
     tag: "Machine Learning",
     color: "teal",
-    type: "image" as const,
+    type: "image",
     media: "/images/image_8.png",
-    desc: "Diffusion model generating diverse jellyfish imagery — covers data prep, model configuration, training, and evaluation.",
+    desc: "Diffusion model trained to generate diverse jellyfish imagery — covers data preparation, model configuration, training, and evaluation.",
     link: { label: "View Notebook", url: "https://colab.research.google.com/drive/1QrN0vTAFjN8g0K39j_B1DYpe_LRs3QUb?usp=sharing" },
   },
   {
@@ -166,7 +180,7 @@ const PROJECTS = [
     title: "Knowledge Sharing Forum",
     tag: "Full Stack",
     color: "emerald",
-    type: "image" as const,
+    type: "image",
     media: "/images/image_6.png",
     desc: "Modern community forum built with Next.js & Tailwind — user auth, topic categories, posts with likes, threaded replies, and full-text search.",
     link: { label: "Open App", url: "/forum" },
@@ -178,7 +192,7 @@ const PROJECTS = [
     title: "Arduino Pomodoro Timer",
     tag: "IoT",
     color: "purple",
-    type: "video" as const,
+    type: "video",
     media: "https://www.youtube.com/embed/VT0XQL8e6lo",
     desc: "Hardware Pomodoro timer built with Arduino and LEDs — tactile feedback for focused, distraction-free work sessions.",
     link: { label: "View on GitHub", url: "https://github.com/Mohd6288/pomodoro.git" },
@@ -189,9 +203,9 @@ const PROJECTS = [
     title: "Travel App Prototype",
     tag: "UX / UI",
     color: "indigo",
-    type: "image" as const,
+    type: "image",
     media: "/images/image_5.png",
-    desc: "Clickable Figma prototype for a travel app — intuitive flows, clean visual hierarchy, and user-centred design.",
+    desc: "Clickable Figma prototype for a travel application — intuitive user flows, clean visual hierarchy, and a user-centred design approach.",
     link: { label: "View in Figma", url: "https://www.figma.com/proto/CsPjykLNtZYDJ5EhRgAIIL/those-bishes-doin-stuff?node-id=509-181&starting-point-node-id=509%3A181&t=KJXY2eLYak57iSUT-1" },
   },
 ];
@@ -204,6 +218,39 @@ const CONTACT = [
   { id: "linkedin", icon: Linkedin,       label: "LinkedIn", value: "Connect",   href: HERO.linkedin,                                 color: "indigo",  desc: "Let's connect"     },
 ];
 
+const SERVICES = [
+  {
+    icon: Globe,
+    title: "Web Development",
+    desc: "Custom websites and web applications built with Next.js, React, and Tailwind CSS — fast, fully responsive, and optimised for search engines.",
+  },
+  {
+    icon: BarChart3,
+    title: "Dashboards & Reporting",
+    desc: "Interactive Power BI and Tableau dashboards that transform raw data into clear, actionable business insights for decision-makers.",
+  },
+  {
+    icon: Bot,
+    title: "Automation & Scripts",
+    desc: "Python-powered workflow automation — from data pipelines and ETL processes to email handling and document management systems.",
+  },
+  {
+    icon: Smartphone,
+    title: "Responsive UI / UX",
+    desc: "Pixel-perfect, mobile-first interfaces with intuitive user flows, strong accessibility, and modern design patterns.",
+  },
+  {
+    icon: Database,
+    title: "Data Analysis",
+    desc: "End-to-end analytics using Python, SQL, and Excel — covering data cleaning, statistical modelling, and compelling visualisations.",
+  },
+  {
+    icon: Palette,
+    title: "Creative Technology",
+    desc: "Interactive installations, generative visuals, and experimental projects that blend code with creative media and physical computing.",
+  },
+];
+
 const FILTERS = [
   { label: "All",          match: []                                    },
   { label: "ML & AI",      match: ["AI & ML", "Machine Learning"]       },
@@ -211,50 +258,12 @@ const FILTERS = [
   { label: "Design & Web", match: ["UX / UI", "Full Stack"]             },
 ];
 
-/* colour maps — unified retro style, both modes use CSS variables */
-const TAG_CLS: Record<string, string> = {
-  sky:     "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  purple:  "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  pink:    "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  indigo:  "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  emerald: "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  teal:    "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-  amber:   "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]",
-};
-const BORDER_CLS: Record<string, string> = {
-  sky:     "hover:border-[var(--accent)]",
-  purple:  "hover:border-[var(--accent)]",
-  pink:    "hover:border-[var(--accent)]",
-  indigo:  "hover:border-[var(--accent)]",
-  emerald: "hover:border-[var(--accent)]",
-  teal:    "hover:border-[var(--accent)]",
-  amber:   "hover:border-[var(--accent)]",
-};
-const LINK_CLS: Record<string, string> = {
-  sky:     "text-[var(--link)] hover:text-[var(--link-hover)]",
-  purple:  "text-[var(--link)] hover:text-[var(--link-hover)]",
-  pink:    "text-[var(--link)] hover:text-[var(--link-hover)]",
-  indigo:  "text-[var(--link)] hover:text-[var(--link-hover)]",
-  emerald: "text-[var(--link)] hover:text-[var(--link-hover)]",
-  teal:    "text-[var(--link)] hover:text-[var(--link-hover)]",
-  amber:   "text-[var(--link)] hover:text-[var(--link-hover)]",
-};
-const ICON_CLS: Record<string, string> = {
-  sky:     "text-[var(--accent-muted)]",
-  emerald: "text-[var(--accent-muted)]",
-  pink:    "text-[var(--accent-muted)]",
-  purple:  "text-[var(--accent-muted)]",
-  indigo:  "text-[var(--accent-muted)]",
-  amber:   "text-[var(--accent-muted)]",
-};
-const ICON_BG: Record<string, string> = {
-  sky:     "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-  emerald: "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-  pink:    "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-  purple:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-  indigo:  "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-  amber:   "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]",
-};
+/* colour classes — unified retro style via CSS variables */
+const TAG_CLS = "bg-[var(--tag-bg)] text-[var(--tag-text)] border-[var(--card-border)]";
+const BORDER_CLS = "hover:border-[var(--accent)]";
+const LINK_CLS = "text-[var(--link)] hover:text-[var(--link-hover)]";
+const ICON_CLS = "text-[var(--accent-muted)]";
+const ICON_BG = "bg-[var(--tag-bg)] group-hover:bg-[var(--card-bg)]";
 
 /* ═══════════════════════════════════════
    HOOKS
@@ -405,7 +414,7 @@ function ScrollBar() {
   );
 }
 
-const SECTION_NUMS: Record<string, number> = { "About Me": 1, "Featured Projects": 2, "Get In Touch": 3 };
+const SECTION_NUMS: Record<string, number> = { "About Me": 1, "Freelance Services": 2, "Featured Projects": 3, "Get In Touch": 4 };
 function SectionLabel({ title, sub }: { title: string; sub?: string }) {
   const num = SECTION_NUMS[title] ?? 0;
   return (
@@ -436,7 +445,7 @@ function SectionLabel({ title, sub }: { title: string; sub?: string }) {
 function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
   const [open,    setOpen]    = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const active = useActiveSection(["top", "about", "projects", "contact"]);
+  const active = useActiveSection(["top", "about", "services", "projects", "contact"]);
 
   useEffect(() => {
     const fn = () => setScrolled(scrollY > 24);
@@ -446,6 +455,7 @@ function Header({ dark, toggle }: { dark: boolean; toggle: () => void }) {
 
   const NAV = [
     { id: "about",    href: "#about",    label: "About"    },
+    { id: "services", href: "#services", label: "Services" },
     { id: "projects", href: "#projects", label: "Projects" },
     { id: "contact",  href: "#contact",  label: "Contact"  },
   ];
@@ -763,6 +773,50 @@ function About() {
    PROJECTS  — equal 3-column grid
 ═══════════════════════════════════════ */
 
+function Services() {
+  return (
+    <section id="services" className="border-y border-[var(--border)] bg-[var(--card-bg)]/70">
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <SectionLabel title="Freelance Services" sub="Digital Solutions" />
+
+        <Reveal delay={0}>
+          <p className="text-center text-sm md:text-base text-[var(--accent-muted)] max-w-lg mx-auto mb-14 leading-relaxed">
+            Available for freelance projects — whether you need a full website, a data dashboard, an automation script, or a creative tech experiment. Let&apos;s turn your idea into a polished digital product.
+          </p>
+        </Reveal>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SERVICES.map(({ icon: Icon, title, desc }, i) => (
+            <Reveal key={title} delay={i * 80}>
+              <div className={`card group flex flex-col items-center text-center p-7 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS}`}>
+                <div className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG}`}>
+                  <Icon size={26} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS}`} />
+                </div>
+                <h3 className="text-sm font-bold text-[var(--fg)] mb-2">{title}</h3>
+                <p className="text-xs text-[var(--accent-muted)] leading-relaxed">{desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={500}>
+          <div className="flex justify-center mt-12">
+            <a href="#contact"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[var(--accent)] text-[var(--bg)] text-sm font-bold shadow-lg hover:scale-[1.04] transition-all"
+            >
+              Discuss Your Project <ArrowRight size={15} />
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ═══════════════════════════════════════
+   PROJECTS  — equal 3-column grid
+═══════════════════════════════════════ */
+
 function Projects() {
   const [filter, setFilter] = useState("All");
 
@@ -798,7 +852,7 @@ function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {list.map((p, i) => (
             <Reveal key={p.id} delay={i * 60}>
-              <article className={`card card-shimmer flex flex-col h-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${BORDER_CLS[p.color] ?? BORDER_CLS.sky}`}>
+              <article className={`card card-shimmer flex flex-col h-full bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${BORDER_CLS}`}>
 
                 {/* ── Fixed-height media (16 : 9) ── */}
                 <div className="aspect-video w-full overflow-hidden rounded-t-2xl bg-[var(--card-bg)] shrink-0">
@@ -806,7 +860,7 @@ function Projects() {
                     <iframe
                       className="w-full h-full"
                       src={p.media} title={p.title} loading="lazy"
-                      frameBorder={0}
+                      style={{ border: 0 }}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
@@ -823,7 +877,7 @@ function Projects() {
                   {/* number + tag */}
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="text-[10px] font-bold text-[var(--accent-muted)] tabular-nums">{p.num}</span>
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${TAG_CLS[p.color] ?? TAG_CLS.sky}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${TAG_CLS}`}>
                       {p.tag}
                     </span>
                   </div>
@@ -842,16 +896,16 @@ function Projects() {
                   <div className="flex items-center gap-4 mt-4">
                     <a
                       href={p.link.url} target="_blank" rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS[p.color] ?? LINK_CLS.sky}`}
+                      className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS}`}
                     >
                       {p.link.label} <ExternalLink size={11} />
                     </a>
-                    {"link2" in p && (p as any).link2 && (
+                    {p.link2 && (
                       <a
-                        href={(p as any).link2.url} target="_blank" rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS[p.color] ?? LINK_CLS.sky}`}
+                        href={p.link2.url} target="_blank" rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 text-xs font-bold transition-all hover:gap-2.5 ${LINK_CLS}`}
                       >
-                        {(p as any).link2.label} <ExternalLink size={11} />
+                        {p.link2.label} <ExternalLink size={11} />
                       </a>
                     )}
                   </div>
@@ -877,6 +931,29 @@ function Projects() {
    CONTACT
 ═══════════════════════════════════════ */
 
+function ContactCard({ id, icon: Icon, label, value, href, desc, delay }: {
+  id: string; icon: typeof Mail; label: string; value: string; href: string; desc: string; delay: number;
+}) {
+  return (
+    <Reveal key={id} delay={delay}>
+      <a href={href}
+        target={id === "email" ? "_self" : "_blank"}
+        rel={id === "email" ? undefined : "noopener noreferrer"}
+        className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS}`}
+      >
+        <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG}`}>
+          <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS}`} />
+        </div>
+        <span className="text-base font-bold text-[var(--fg)] mb-1">{label}</span>
+        <span className="text-xs text-[var(--accent-muted)] break-all text-center mb-2">{value}</span>
+        <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[var(--accent)] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+          {desc}
+        </span>
+      </a>
+    </Reveal>
+  );
+}
+
 function Contact() {
   return (
     <section id="contact" className="max-w-5xl mx-auto px-6 py-24">
@@ -884,51 +961,21 @@ function Contact() {
 
       <Reveal delay={0}>
         <p className="text-center text-sm md:text-base text-[var(--accent-muted)] max-w-md mx-auto mb-12 leading-relaxed">
-          Open to data roles, freelance projects, and collaborations. Reach out and let's build something together.
+          Open to data-focused roles, freelance projects, and creative collaborations. Drop me a message and let&apos;s build something great together.
         </p>
       </Reveal>
 
       {/* Top row: 3 cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
-        {CONTACT.slice(0, 3).map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
-          <Reveal key={id} delay={i * 90}>
-            <a href={href}
-              target={id === "email" ? "_self" : "_blank"}
-              rel={id === "email" ? undefined : "noopener noreferrer"}
-              className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
-            >
-              <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG[color] ?? ICON_BG.sky}`}>
-                <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS[color] ?? ICON_CLS.sky}`} />
-              </div>
-              <span className="text-base font-bold text-[var(--fg)] mb-1">{label}</span>
-              <span className="text-xs text-[var(--accent-muted)] break-all text-center mb-2">{value}</span>
-              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[var(--accent)] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                {desc}
-              </span>
-            </a>
-          </Reveal>
+        {CONTACT.slice(0, 3).map((c, i) => (
+          <ContactCard key={c.id} {...c} delay={i * 90} />
         ))}
       </div>
 
       {/* Bottom row: 2 cards centered */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto mb-10">
-        {CONTACT.slice(3).map(({ id, icon: Icon, label, value, href, color, desc }, i) => (
-          <Reveal key={id} delay={(i + 3) * 90}>
-            <a href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`card group flex flex-col items-center p-8 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${BORDER_CLS[color] ?? BORDER_CLS.sky}`}
-            >
-              <div className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--glow)] ${ICON_BG[color] ?? ICON_BG.sky}`}>
-                <Icon size={28} className={`transition-transform duration-300 group-hover:scale-110 ${ICON_CLS[color] ?? ICON_CLS.sky}`} />
-              </div>
-              <span className="text-base font-bold text-[var(--fg)] mb-1">{label}</span>
-              <span className="text-xs text-[var(--accent-muted)] break-all text-center mb-2">{value}</span>
-              <span className="text-[10px] uppercase tracking-[0.15em] font-semibold text-[var(--accent)] opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                {desc}
-              </span>
-            </a>
-          </Reveal>
+        {CONTACT.slice(3).map((c, i) => (
+          <ContactCard key={c.id} {...c} delay={(i + 3) * 90} />
         ))}
       </div>
 
@@ -1068,6 +1115,7 @@ export default function Home() {
         <Header dark={dark} toggle={toggle} />
         <Hero />
         <About />
+        <Services />
         <Projects />
         <Contact />
         <Footer />
